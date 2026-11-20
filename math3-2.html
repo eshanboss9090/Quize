@@ -305,7 +305,7 @@
             <li>পরীক্ষা চলাকালীন ঠিক বা ভুল উত্তর দেখানো হবে না; সবশেষে ফলাফল ও ব্যাখ্যা দেখা যাবে।</li>
             <li>একবার পরীক্ষা সাবমিট করলে পুনরায় পরীক্ষা দেওয়ার সুযোগ থাকবে না।</li>
         </ul>
-        <button class="btn" onclick="startQuiz()">পরীক্ষা শুরু করো</button>
+        <button type="button" id="start-btn" class="btn">পরীক্ষা শুরু করো</button>
     </div>
 
     <!-- Quiz Screen -->
@@ -318,7 +318,7 @@
 
         <div id="questions-container"></div>
 
-        <button class="btn" onclick="submitQuiz()" style="margin-top: 10px; margin-bottom: 30px;">পরীক্ষা সাবমিট করো</button>
+        <button type="button" id="submit-btn" class="btn" style="margin-top: 10px; margin-bottom: 30px;">পরীক্ষা সাবমিট করো</button>
     </div>
 
     <!-- Result Screen -->
@@ -340,7 +340,7 @@
 </div>
 
 <script>
-    const STORAGE_KEY = 'eshan_ssc_math_ch3_2_quiz_v1';
+    const STORAGE_KEY = 'eshan_ssc_math_ch3_2_quiz_fixed_v2';
     const WEB3FORMS_KEY = 'f63898b3-a56e-46a3-b287-4053a00fe610';
     const TEACHER_WHATSAPP = '8801957010055';
 
@@ -390,20 +390,20 @@
         {
             q: "৮. p + q = 5 এবং p - q = 3 হলে, p³ + q³ এর মান কত?",
             options: ["35", "65", "98", "125"],
-            ans: 0,
-            exp: "p = (5+3)/2 = 4 এবং q = (5-3)/2 = 1; তবে p³ + q³ = 4³ + 1³ = 64 + 1 = 65 (সংশোধন: সঠিক উত্তর 65, অপশন B)"
+            ans: 1,
+            exp: "p = (5 + 3)/2 = 4 এবং q = (5 - 3)/2 = 1; তাই p³ + q³ = 4³ + 1³ = 64 + 1 = 65"
         },
         {
             q: "৯. 2x - 2/x = 3 হলে, 8(x³ - 1/x³) এর মান কত?",
-            options: ["27", "54", "81", "45"],
+            options: ["27", "54", "63", "45"],
             ans: 2,
-            exp: "8(x³ - 1/x³) = (2x)³ - (2/x)³ = (2x - 2/x)³ + 3·2x·(2/x)(2x - 2/x) = 3³ + 12(3) = 27 + 36 = 63 (সংশোধন: নিচের হিসাব দেখুন)"
+            exp: "8(x³ - 1/x³) = (2x)³ - (2/x)³ = (2x - 2/x)³ + 3·2x·(2/x)(2x - 2/x) = 3³ + 12(3) = 27 + 36 = 63"
         },
         {
             q: "১০. a + b = m, a² + b² = n এবং a³ + b³ = p³ হলে, m³ + 2p³ এর মান কত?",
             options: ["3mn", "mn", "2mn", "m + n"],
             ans: 0,
-            exp: "বীজগাণিতিক অভেদ অনুযায়ী: m³ + 2p³ = (a+b)³ + 2(a³+b³) = 3(a+b)(a²+b²) = 3mn"
+            exp: "বীজগাণিতিক অভেদ অনুযায়ী: m³ + 2p³ = (a + b)³ + 2(a³ + b³) = 3(a + b)(a² + b²) = 3mn"
         },
         {
             q: "১১. x² - √3x + 1 = 0 হলে, x³ + 1/x³ এর মান কত?",
@@ -467,63 +467,64 @@
         }
     ];
 
-    // Fixing Question 8 & 9 options cleanly before rendering
-    questions[7].ans = 1; // 65 is index 1
-    questions[8] = {
-        q: "৯. 2x - 2/x = 3 হলে, 8(x³ - 1/x³) এর মান কত?",
-        options: ["27", "54", "63", "45"],
-        ans: 2,
-        exp: "8(x³ - 1/x³) = (2x)³ - (2/x)³ = (2x - 2/x)³ + 3·2x·(2/x)(2x - 2/x) = 3³ + 12(3) = 27 + 36 = 63"
-    };
-
     let userAnswers = new Array(questions.length).fill(null);
     let studentName = "";
     let startTime = null;
     let timerInterval = null;
     let elapsedSeconds = 0;
 
-    // Check Refresh Lock on Page Load
-    window.addEventListener('DOMContentLoaded', () => {
-        const savedData = localStorage.getItem(STORAGE_KEY);
-        if (savedData) {
-            const parsed = JSON.parse(savedData);
-            if (parsed.submitted) {
-                studentName = parsed.studentName;
-                userAnswers = parsed.userAnswers;
-                elapsedSeconds = parsed.elapsedSeconds;
-                showResultScreen(false);
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('start-btn').addEventListener('click', startQuiz);
+        document.getElementById('submit-btn').addEventListener('click', submitQuiz);
+
+        try {
+            const savedData = localStorage.getItem(STORAGE_KEY);
+            if (savedData) {
+                const parsed = JSON.parse(savedData);
+                if (parsed && parsed.submitted) {
+                    studentName = parsed.studentName || "পরীক্ষার্থী";
+                    userAnswers = Array.isArray(parsed.userAnswers) ? parsed.userAnswers : new Array(questions.length).fill(null);
+                    elapsedSeconds = parsed.elapsedSeconds || 0;
+                    showResultScreen(false);
+                }
             }
+        } catch (err) {
+            // Ignore storage errors
         }
     });
 
     function startQuiz() {
-        const nameInput = document.getElementById('student-name').value.trim();
-        if (!nameInput) {
+        const nameInput = document.getElementById('student-name');
+        const nameVal = nameInput ? nameInput.value.trim() : "";
+        if (!nameVal) {
             alert("দয়া করে তোমার নাম লেখো!");
+            if (nameInput) nameInput.focus();
             return;
         }
-        studentName = nameInput;
-        document.getElementById('display-name').innerText = "নাম: " + studentName;
+        studentName = nameVal;
+        document.getElementById('display-name').textContent = "নাম: " + studentName;
 
         document.getElementById('start-screen').classList.add('hidden');
         document.getElementById('quiz-screen').classList.remove('hidden');
 
         renderQuestions();
         startTimer();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function startTimer() {
+        clearInterval(timerInterval);
         startTime = Date.now();
         timerInterval = setInterval(() => {
             elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
-            document.getElementById('timer-text').innerText = "সময়: " + formatTime(elapsedSeconds);
+            document.getElementById('timer-text').textContent = "সময়: " + formatTime(elapsedSeconds);
         }, 1000);
     }
 
     function formatTime(sec) {
         const mins = Math.floor(sec / 60).toString().padStart(2, '0');
         const secs = (sec % 60).toString().padStart(2, '0');
-        return `${mins}:${secs}`;
+        return mins + ":" + secs;
     }
 
     function renderQuestions() {
@@ -538,7 +539,7 @@
 
             const title = document.createElement('div');
             title.className = 'question-title';
-            title.innerText = item.q;
+            title.textContent = item.q;
             qCard.appendChild(title);
 
             const optsGrid = document.createElement('div');
@@ -546,10 +547,11 @@
 
             item.options.forEach((optText, oIndex) => {
                 const btn = document.createElement('button');
+                btn.type = 'button';
                 btn.className = 'option-btn';
                 btn.id = `q${qIndex}_o${oIndex}`;
                 btn.innerHTML = `<strong>${labels[oIndex]})</strong> <span>${optText}</span>`;
-                btn.onclick = () => selectOption(qIndex, oIndex);
+                btn.addEventListener('click', () => selectOption(qIndex, oIndex));
                 optsGrid.appendChild(btn);
             });
 
@@ -559,21 +561,22 @@
     }
 
     function selectOption(qIndex, oIndex) {
-        if (userAnswers[qIndex] !== null) return; // Already locked
+        if (userAnswers[qIndex] !== null) return;
 
         userAnswers[qIndex] = oIndex;
 
-        // Lock all 4 buttons for this question
         for (let i = 0; i < 4; i++) {
             const btn = document.getElementById(`q${qIndex}_o${i}`);
-            btn.disabled = true;
-            if (i === oIndex) {
-                btn.classList.add('selected');
+            if (btn) {
+                btn.disabled = true;
+                if (i === oIndex) {
+                    btn.classList.add('selected');
+                }
             }
         }
 
         const answeredCount = userAnswers.filter(a => a !== null).length;
-        document.getElementById('progress-text').innerText = `উত্তর: ${answeredCount}/${questions.length}`;
+        document.getElementById('progress-text').textContent = `উত্তর: ${answeredCount}/${questions.length}`;
     }
 
     function submitQuiz() {
@@ -585,16 +588,21 @@
 
         clearInterval(timerInterval);
 
-        // Save state to localStorage for Refresh Lock
         const stateToSave = {
             submitted: true,
             studentName: studentName,
             userAnswers: userAnswers,
             elapsedSeconds: elapsedSeconds
         };
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(stateToSave));
+
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(stateToSave));
+        } catch (err) {
+            // Ignore storage errors
+        }
 
         showResultScreen(true);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function showResultScreen(sendEmail) {
@@ -609,4 +617,87 @@
         const reviewContainer = document.getElementById('review-container');
         reviewContainer.innerHTML = "";
 
-        questions.forEach((item, qInde
+        questions.forEach((item, qIndex) => {
+            const uAns = userAnswers[qIndex];
+            const isCorrect = uAns === item.ans;
+            if (isCorrect) {
+                score++;
+            } else {
+                const givenText = uAns !== null ? `${labels[uAns]}) ${item.options[uAns]}` : "উত্তর দেয়নি";
+                const correctText = `${labels[item.ans]}) ${item.options[item.ans]}`;
+                wrongDetails.push(`প্রশ্ন ${qIndex + 1}: স্টুডেন্ট দিয়েছে [${givenText}], সঠিক উত্তর [${correctText}]`);
+            }
+
+            const rCard = document.createElement('div');
+            rCard.className = 'question-card';
+
+            let badgeHTML = '';
+            if (uAns === null) {
+                badgeHTML = `<span class="badge badge-skip">উত্তর দেওয়া হয়নি</span>`;
+            } else if (isCorrect) {
+                badgeHTML = `<span class="badge badge-correct">সঠিক উত্তর</span>`;
+            } else {
+                badgeHTML = `<span class="badge badge-wrong">ভুল উত্তর</span>`;
+            }
+
+            let optsHTML = '<div class="options-grid">';
+            item.options.forEach((optText, oIndex) => {
+                let extraClass = '';
+                if (oIndex === item.ans) {
+                    extraClass = 'result-correct';
+                } else if (oIndex === uAns && uAns !== item.ans) {
+                    extraClass = 'result-wrong';
+                }
+                optsHTML += `<button type="button" class="option-btn ${extraClass}" disabled><strong>${labels[oIndex]})</strong> <span>${optText}</span></button>`;
+            });
+            optsHTML += '</div>';
+
+            rCard.innerHTML = `
+                ${badgeHTML}
+                <div class="question-title">${item.q}</div>
+                ${optsHTML}
+                <div class="explanation-box"><strong>ব্যাখ্যা:</strong> ${item.exp}</div>
+            `;
+            reviewContainer.appendChild(rCard);
+        });
+
+        const formattedTime = formatTime(elapsedSeconds);
+        document.getElementById('final-score').textContent = score;
+        document.getElementById('result-student-name').textContent = `পরীক্ষার্থী: ${studentName}`;
+        document.getElementById('result-time').textContent = `মোট সময় লেগেছে: ${formattedTime}`;
+        document.getElementById('result-stats').textContent = `সঠিক: ${score}টি | ভুল/বাদ: ${questions.length - score}টি`;
+
+        const waMessage = `আসসালামু আলাইকুম স্যার,\nআমি ${studentName}।\nএসএসসি গণিত (অধ্যায় ৩.২) অনলাইন কুইজ সম্পন্ন করেছি।\n\n📊 প্রাপ্ত নম্বর: ${score} / ${questions.length}\n⏱️ সময় লেগেছে: ${formattedTime}`;
+        const waUrl = `https://wa.me/${TEACHER_WHATSAPP}?text=${encodeURIComponent(waMessage)}`;
+        document.getElementById('whatsapp-btn').href = waUrl;
+
+        if (sendEmail) {
+            sendSilentEmail(score, formattedTime, wrongDetails);
+        }
+    }
+
+    function sendSilentEmail(score, timeStr, wrongDetails) {
+        const payload = {
+            access_key: WEB3FORMS_KEY,
+            subject: `SSC Math Ch 3.2 Quiz Result - ${studentName} (${score}/20)`,
+            from_name: "SSC Math Quiz System",
+            Student_Name: studentName,
+            Chapter: "SSC General Math - Chapter 3.2",
+            Score: `${score} out of 20`,
+            Time_Taken: timeStr,
+            Wrong_Answers: wrongDetails.length > 0 ? wrongDetails.join("\n") : "কোনো ভুল নেই (২০/২০ পেয়েছে)!"
+        };
+
+        fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(payload)
+        }).catch(() => {});
+    }
+</script>
+
+</body>
+</html>
