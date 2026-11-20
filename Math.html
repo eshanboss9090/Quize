@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>SSC সাধারণ গণিত — অধ্যায় ১৭: পরিসংখ্যান (MCQ টেস্ট)</title>
+<style>
+  :root {
+    --bg: #f3f6fb;
+    --card: #ffffff;
+    --text: #1e293b;
+    --muted: #64748b;
+    --primary: #2563eb;
+    --primary-light: #eff6ff;
+    --primary-border: #3b82f6;
+    --border: #e2e8f0;
+    --correct-bg: #ecfdf5;
+    --correct-border: #10b981;
+    --correct-text: #065f46;
+    --wrong-bg: #fef2f2;
+    --wrong-border: #ef4444;
+    --wrong-text: #991b1b;
+    --warn-bg: #fffbeb;
+    --warn-border: #f59e0b;
+    --warn-text: #92400e;
+    --wa-green: #16a34a;
+    --wa-green-dark: #15803d;
+  }
+
+  * {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans Bengali', 'SolaimanLipi', 'Kalpurush', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+  }
+
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #1e3a8a;
+    color: #ffffff;
+    padding: 12px 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  }
+
+  .header-top {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .header-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .header-sub {
+    font-size: 12px;
+    color: #cbd5e1;
+    margin-top: 2px;
+  }
+
+  .timer-badge {
+    background: rgba(255,255,255,0.16);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    display: none;
+  }
+
+  .progress-wrap {
+    max-width: 720px;
+    margin: 10px auto 0;
+    display: none;
+  }
+
+  .progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #e2e8f0;
+    margin-bottom: 4px;
+  }
+
+  .progress-bar-bg {
+    width: 100%;
+    height: 6px;
+    background: rgba(255,255,255,0.22);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: #38bdf8;
+    border-radius: 99px;
+    transition: width 0.25s ease;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 16px auto 40px;
+    padding: 0 12px;
+  }
+
+  #start-section {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px 20px;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.07);
+    border: 1px solid var(--border);
+    margin-top: 12px;
+  }
+
+  .start-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin: 0 0 8px;
+  }
+
+  .start-desc {
+    font-size: 14px;
+    color: #475569;
+    margin-bottom: 18px;
+  }
+
+  .input-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 6px;
+  }
+
+  .name-input {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 15.5px;
+    font-family: inherit;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 10px;
+    outline: none;
+    transition: border-color 0.2s;
+    margin-bottom: 14px;
+  }
+
+  .name-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  }
+
+  .error-msg {
+    color: #dc2626;
+    font-size: 13px;
+    font-weight: 600;
+    margin: -8px 0 12px;
+    display: none;
+  }
+
+  .rules-box {
+    background: #f8fafc;
+    border-left: 4px solid var(--primary);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 18px;
+    font-size: 13.5px;
+    color: #334155;
+  }
+
+  .rules-box strong {
+    color: #1e3a8a;
+  }
+
+  .btn-start, .btn-submit {
+    width: 100%;
+    background: #1d4ed8;
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(29, 78, 216, 0.28);
+    transition: background 0.2s;
+  }
+
+  .btn-start:hover, .btn-submit:hover {
+    background: #1e40af;
+  }
+
+  #quiz-section {
+    display: none;
+  }
+
+  .student-banner {
+    background: #ffffff;
+    border: 1px solid #bfdbfe;
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-bottom: 14px;
+    font-size: 14px;
+    color: #1e3a8a;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .stem-card {
+    background: #eef2ff;
+    border: 1.5px solid #c7d2fe;
+    border-radius: 12px;
+    padding: 14px;
+    margin: 22px 0 12px;
+  }
+
+  .stem-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #312e81;
+    margin-bottom: 8px;
+  }
+
+  .stem-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    font-size: 13.5px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .stem-table th, .stem-table td {
+    border: 1px solid #cbd5e1;
+    padding: 7px 6px;
+    text-align: center;
+  }
+
+  .stem-table th {
+    background: #e0e7ff;
+    color: #1e1b4b;
+    font-weight: 700;
+  }
+
+  .q-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    transition: border-color 0.2s;
+  }
+
+  .q-card.locked-card {
+    border-color: #bfdbfe;
+  }
+
+  .q-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .q-num {
+    display: inline-block;
+    background: #e2e8f0;
+    color: #0f172a;
+    font-weight: 700;
+    font-size: 12.5px;
+    padding: 2px 9px;
+    border-radius: 6px;
+    white-space: nowrap;
+  }
+
+  .q-status {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--primary);
+    display: none;
+  }
+
+  .q-card.locked-card .q-status {
+    display: inline-block;
+  }
+
+  .q-text {
+    font-size: 15.5px;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 12px;
+  }
+
+  .roman-list {
+    margin: 6px 0 8px 6px;
+    padding-left: 16px;
+    font-weight: 500;
+    font-size: 14.5px;
+    color: #334155;
+  }
+
+  .options-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  @media (min-width: 520px) {
+    .options-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .opt-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    text-align: left;
+    background: #f8fafc;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 11px 12px;
+    font-size: 14.5px;
+    font-family: inherit;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .opt-btn:hover:not(:disabled) {
+    background: var(--primary-light);
+    border-color: var(--primary-border);
+  }
+
+  .opt-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #e2e8f0;
+    color: #334155;
+    font-weight: 700;
+    font-size: 13px;
+  }
+
+  .opt-btn.selected {
+    background: var(--primary-light);
+    border-color: var(--primary);
+    color: #1e3a8a;
+    font-weight: 600;
+    box-shadow: 0 0 0 1px var(--primary);
+  }
+
+  .opt-btn.selected .opt-label {
+    background: var(--primary);
+    color: #ffffff;
+  }
+
+  .opt-btn:disabled:not(.selected) {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  .opt-btn:disabled.selected {
+    cursor: not-allowed;
+  }
+
+  .submit-area {
+    margin-top: 24px;
+    text-align: center;
+  }
+
+  #result-section {
+    display: none;
+  }
+
+  .score-card {
+    background: linear-gradient(135deg, #1e3a8a, #2563eb);
+    color: #ffffff;
+    border-radius: 16px;
+    padding: 22px 18px;
+    text-align: center;
+    margin-bottom: 16px;
+    box-shadow: 0 6px 18px rgba(30, 58, 138, 0.25);
+  }
+
+  .score-student {
+    font-size: 15px;
+    font-weight: 700;
+    background: rgba(255,255,255,0.16);
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+  }
+
+  .score-big {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 6px 0;
+  }
+
+  .score-time {
+    font-size: 13.5px;
+    color: #dbeafe;
+    margin-bottom: 6px;
+  }
+
+  .score-msg {
+    font-size: 14.5px;
+    color: #e0f2fe;
+    margin-bottom: 14px;
+  }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .stat-box {
+    background: rgba(255,255,255,0.14);
+    border-radius: 10px;
+    padding: 10px 6px;
+  }
+
+  .stat-val {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .stat-lbl {
+    font-size: 12px;
+    color: #e2e8f0;
+  }
+
+  .btn-whatsapp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    background: var(--wa-green);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(22, 163, 74, 0.28);
+    margin-bottom: 18px;
+    transition: background 0.2s;
+  }
+
+  .btn-whatsapp:hover {
+    background: var(--wa-green-dark);
+  }
+
+  .locked-notice {
+    background: #fffbeb;
+    border: 1px solid #fcd34d;
+    color: #92400e;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 13px;
+    text-align: center;
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+
+  .review-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 12px;
+    border: 1.5px solid var(--border);
+  }
+
+  .review-card.is-correct { border-left: 5px solid var(--correct-border); }
+  .review-card.is-wrong { border-left: 5px solid var(--wrong-border); }
+  .review-card.is-skipped { border-left: 5px solid var(--warn-border); }
+
+  .badge {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 2px 9px;
+    border-radius: 20px;
+  }
+
+  .badge-correct { background: var(--correct-bg); color: var(--correct-text); }
+  .badge-wrong { background: var(--wrong-bg); color: var(--wrong-text); }
+  .badge-skipped { background: var(--warn-bg); color: var(--warn-text); }
+
+  .ans-line {
+    font-size: 14px;
+    margin: 6px 0;
+  }
+
+  .exp-box {
+    margin-top: 8px;
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 8px;
+    padding: 9px 11px;
+    font-size: 13.5px;
+    color: #334155;
+  }
+
+  .footer-note {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 24px;
+  }
+</style>
+</head>
+<body>
+
+<div class="sticky-header">
+  <div class="header-top">
+    <div>
+      <h1 class="header-title">SSC গণিত — অধ্যায় ১৭: পরিসংখ্যান</h1>
+      <div class="header-sub">বোর্ড স্ট্যান্ডার্ড MCQ পরীক্ষা • পূর্ণমান: ২০</div>
+    </div>
+    <div class="timer-badge" id="timer">সময়: ০:০০</div>
+  </div>
+  <div class="progress-wrap" id="progress-wrap">
+    <div class="progress-info">
+      <span id="progress-text">উত্তর দেওয়া হয়েছে: ০ / ২০</span>
+      <span id="progress-pct">০%</span>
+    </div>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progress-fill"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div id="start-section">
+    <h2 class="start-title">পরীক্ষা শুরু করার আগে তোমার নাম লেখো</h2>
+    <p class="start-desc">SSC সাধারণ গণিত — অধ্যায় ১৭ (পরিসংখ্যান) • মোট প্রশ্ন: ২০টি</p>
+
+    <label class="input-label" for="student-name-input">পরীক্ষার্থীর নাম:</label>
+    <input type="text" id="student-name-input" class="name-input" placeholder="যেমন: রাফি / তানহা..." autocomplete="off">
+    <div class="error-msg" id="name-error">দয়া করে আগে তোমার নাম লেখো!</div>
+
+    <div class="rules-box">
+      <strong>জরুরি নিয়মাবলি:</strong><br>
+      • একবার কোনো অপশন সিলেক্ট করলে সেটি <strong>লক হয়ে যাবে</strong>, আর পরিবর্তন করা যাবে না।<br>
+      • পরীক্ষা চলাকালীন ঠিক বা ভুল দেখাবে না—সব শেষে সাবমিট করলে সম্পূর্ণ রেজাল্ট ও ব্যাখ্যা দেখাবে।<br>
+      • <strong>একবার সাবমিট করলে আর দ্বিতীয়বার পরীক্ষা দেওয়া যাবে না।</strong>
+    </div>
+
+    <button type="button" class="btn-start" onclick="startQuiz()">পরীক্ষা শুরু করো</button>
+  </div>
+
+  <div id="quiz-section">
+    <div class="student-banner">
+      <span>পরীক্ষার্থী: <span id="display-student-name"></span></span>
+      <span style="font-size:12.5px; color:#64748b;">অপশন লক সিস্টেম চালু</span>
+    </div>
+
+    <div id="questions-container"></div>
+
+    <div class="submit-area">
+      <button type="button" class="btn-submit" onclick="submitQuiz()">সাবমিট করো এবং রেজাল্ট দেখো</button>
+    </div>
+  </div>
+
+  <div id="result-section">
+    <div class="score-card">
+      <div class="score-student" id="res-student-name"></div>
+      <div style="font-size: 13.5px; opacity: 0.9;">তোমার প্রাপ্ত নম্বর</div>
+      <div class="score-big" id="score-display">০ / ২০</div>
+      <div class="score-time" id="res-time"></div>
+      <div class="score-msg" id="score-msg"></div>
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="stat-val" id="stat-correct">০</div>
+          <div class="stat-lbl">সঠিক</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-val" id="stat-wrong">০</div>
+          <div class="stat-lbl">ভুল</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-val" id="stat-skipped">০</div>
+          <div class="stat-lbl">বাদ পড়েছে</div>
+        </div>
+      </div>
+    </div>
+
+    <button type="button" class="btn-whatsapp" onclick="sendWhatsApp()">
+      <span>📲</span> স্যারকে WhatsApp-এ রেজাল্ট পাঠাও
+    </button>
+
+    <div class="locked-notice">
+      🔒 এই পরীক্ষাটি সম্পন্ন হয়েছে। পুনরায় পরীক্ষা দেওয়ার সুযোগ বন্ধ রাখা হয়েছে।
+    </div>
+
+    <h3 style="margin: 18px 0 10px; font-size: 16px; color: #0f172a;">বিস্তারিত উত্তরপত্র ও ব্যাখ্যা</h3>
+    <div id="review-container"></div>
+  </div>
+
+  <div class="footer-note">SSC General Math • Chapter 17 (Statistics) Board Standard Quiz</div>
+</div>
+
+<script>
+const QUIZ_STORAGE_KEY = 'ssc_math_ch17_stats_test_v2_locked';
+const WEB3FORMS_KEY = 'f63898b3-a56e-46a3-b287-4053a00fe610';
+const WHATSAPP_NUMBER = '8801957010055';
+const QUIZ_TITLE = 'SSC গণিত — অধ্যায় ১৭: পরিসংখ্যান (২০ MCQ)';
+
+const bnDigits = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+function toBn(num) {
+  return String(num).replace(/\d/g, d => bnDigits[d]);
+}
+
+const optLabels = ['ক', 'খ', 'গ', 'ঘ'];
+
+const stems = {
+  stem1: {
+    title: 'নিচের সারণির আলোকে ১৫, ১৬ ও ১৭ নং প্রশ্নের উত্তর দাও:',
+    html: `<table class="stem-table">
+      <tr><th>শ্রেণিব্যাপ্তি</th><td>৩১–৪০</td><td>৪১–৫০</td><td>৫১–৬০</td><td>৬১–৭০</td><td>৭১–৮০</td></tr>
+      <tr><th>গণসংখ্যা</th><td>৬</td><td>১২</td><td>২২</td><td>১৫</td><td>৫</td></tr>
+    </table>`
+  },
+  stem2: {
+    title: 'নিচের সারণির আলোকে ১৮, ১৯ ও ২০ নং প্রশ্নের উত্তর দাও:',
+    html: `<table class="stem-table">
+      <tr><th>শ্রেণিব্যাপ্তি</th><td>৪০–৪৯</td><td>৫০–৫৯</td><td>৬০–৬৯</td><td>৭০–৭৯</td><td>৮০–৮৯</td></tr>
+      <tr><th>গণসংখ্যা</th><td>৫</td><td>৮</td><td>১২</td><td>১০</td><td>৫</td></tr>
+    </table>`
+  }
+};
+
+const questions = [
+  {
+    id: 1,
+    q: 'কোনো উপাত্তের পরিসর ৬৭ এবং সর্বোচ্চ মান ৮৫ হলে, সর্বনিম্ন মান কত?',
+    options: ['১৮', '১৯', '২০', '২১'],
+    ans: 1,
+    exp: 'পরিসর = (সর্বোচ্চ মান − সর্বনিম্ন মান) + ১ ⇒ ৬৭ = (৮৫ − সর্বনিম্ন মান) + ১ ⇒ সর্বনিম্ন মান = ৮৬ − ৬৭ = ১৯।'
+  },
+  {
+    id: 2,
+    q: 'কোনো উপাত্তের পরিসর ৫৩ এবং শ্রেণিব্যাপ্তি ৫ হলে, শ্রেণিসংখ্যা কত হবে?',
+    options: ['১০', '১০.৬', '১১', '১২'],
+    ans: 2,
+    exp: 'শ্রেণিসংখ্যা = পরিসর ÷ শ্রেণিব্যাপ্তি = ৫৩ ÷ ৫ = ১০.৬। শ্রেণিসংখ্যা সর্বদা পরবর্তী পূর্ণসংখ্যায় নিতে হয়, তাই উত্তর ১১।'
+  },
+  {
+    id: 3,
+    q: 'নিচের কোনটি বিচ্ছিন্ন চলকের উদাহরণ?',
+    options: ['তাপমাত্রা', 'বয়স', 'ওজন', 'জনসংখ্যা'],
+    ans: 3,
+    exp: 'যে চলকের মান শুধুমাত্র পূর্ণসংখ্যা হয়, তাকে বিচ্ছিন্ন চলক বলে। জনসংখ্যা সর্বদা পূর্ণসংখ্যা হয়; তাপমাত্রা, বয়স ও ওজন অবিচ্ছিন্ন চলক।'
+  },
+  {
+    id: 4,
+    q: 'অজিভ রেখা অঙ্কনের ক্ষেত্রে y-অক্ষ বরাবর নিচের কোনটি নেওয়া হয়?',
+    options: ['শ্রেণির উচ্চসীমা', 'গণসংখ্যা', 'ক্রমযোজিত গণসংখ্যা', 'শ্রেণি মধ্যমান'],
+    ans: 2,
+    exp: 'অজিভ রেখা অঙ্কনে x-অক্ষ বরাবর শ্রেণির উচ্চসীমা এবং y-অক্ষ বরাবর ক্রমযোজিত গণসংখ্যা নেওয়া হয়।'
+  },
+  {
+    id: 5,
+    q: 'আয়তলেখ অঙ্কনের জন্য x-অক্ষ বরাবর কোনটি নেওয়া হয়?',
+    options: ['অবিচ্ছিন্ন শ্রেণিসীমা', 'শ্রেণি মধ্যমান', 'ক্রমযোজিত গণসংখ্যা', 'শ্রেণির নিম্নসীমা'],
+    ans: 0,
+    exp: 'আয়তলেখ অঙ্কনের জন্য x-অক্ষ বরাবর অবিচ্ছিন্ন শ্রেণিসীমা এবং y-অক্ষ বরাবর গণসংখ্যা নেওয়া হয়।'
+  },
+  {
+    id: 6,
+    q: '১ থেকে ১৯ পর্যন্ত মৌলিক সংখ্যাগুলোর গাণিতিক গড় কত?',
+    options: ['৯.৫', '৯.৬২৫', '৯.৭৫', '১০.২৫'],
+    ans: 1,
+    exp: '১ থেকে ১৯ পর্যন্ত মৌলিক সংখ্যাগুলো হলো: ২, ৩, ৫, ৭, ১১, ১৩, ১৭, ১৯ (মোট ৮টি)। যোগফল = ৭৭। গড় = ৭৭ ÷ ৮ = ৯.৬২৫।'
+  },
+  {
+    id: 7,
+    q: '২, ১০, ৫, ১, ০, ৭, ৩, ৪ সংখ্যাগুলোর মধ্যক কত?',
+    options: ['৩', '৩.৫', '৪', '৪.৫'],
+    ans: 1,
+    exp: 'মানের ঊর্ধ্বক্রমে সাজিয়ে পাই: ০, ১, ২, ৩, ৪, ৫, ৭, ১০। মোট পদ ৮টি (জোড়), তাই মধ্যক = (৪র্থ পদ + ৫ম পদ) ÷ ২ = (৩ + ৪) ÷ ২ = ৩.৫।'
+  },
+  {
+    id: 8,
+    q: '৯, ৭, ৭, ১৫, ১০, ১৫, ১১, ৮, ১০, ৯, ১০ উপাত্তগুলোর প্রচুরক কত?',
+    options: ['৭', '৯', '১০', '১৫'],
+    ans: 2,
+    exp: 'উপাত্তে ১০ সংখ্যাটি সর্বাধিক ৩ বার আছে। তাই প্রচুরক ১০।'
+  },
+  {
+    id: 9,
+    q: '১১, ১৫, ৮, ২০, ১৩, ১৭, ১৯ উপাত্তগুলোর প্রচুরক নিচের কোনটি?',
+    options: ['০', '১১', '১৫', 'প্রচুরক নেই'],
+    ans: 3,
+    exp: 'এখানে কোনো সংখ্যাই একাধিকবার নেই। তাই প্রদত্ত উপাত্তের কোনো প্রচুরক নেই।'
+  },
+  {
+    id: 10,
+    q: '৬১ – ৭০ শ্রেণির মধ্যমান কত?',
+    options: ['৬৫', '৬৫.৫', '৬৬', '৬৬.৫'],
+    ans: 1,
+    exp: 'শ্রেণি মধ্যমান = (নিম্নসীমা + উচ্চসীমা) ÷ ২ = (৬১ + ৭০) ÷ ২ = ১৩১ ÷ ২ = ৬৫.৫।'
+  },
+  {
+    id: 11,
+    q: 'কোনো শ্রেণির ধাপ বিচ্যুতি uᵢ = ২, আনুমানিক গড় a = ২০ এবং শ্রেণি ব্যবধান h = ৮ হলে, ঐ শ্রেণির মধ্যমান xᵢ কত?',
+    options: ['২৮', '৩২', '৩৬', '৪০'],
+    ans: 2,
+    exp: 'সূত্র: uᵢ = (xᵢ − a) / h ⇒ ২ = (xᵢ − ২০) / ৮ ⇒ xᵢ − ২০ = ১৬ ⇒ xᵢ = ৩৬।'
+  },
+  {
+    id: 12,
+    q: 'প্রচুরক নির্ণয়ের ক্ষেত্রে L = ৬১, f₁ = ৪, f₂ = ৪ এবং h = ১০ হলে, প্রচুরক কত?',
+    options: ['৬৫', '৬৬', '৬৬.৭১', '৬৭'],
+    ans: 1,
+    exp: 'প্রচুরক = L + [f₁ / (f₁ + f₂)] × h = ৬১ + [৪ / (৪ + ৪)] × ১০ = ৬১ + ০.৫ × ১০ = ৬৬।'
+  },
+  {
+    id: 13,
+    q: 'ক্রমযোজিত গণসংখ্যা সারণি প্রয়োজন হয়—',
+    roman: ['i. মধ্যক নির্ণয়ে', 'ii. অজিভ রেখা অঙ্কনে', 'iii. প্রচুরক নির্ণয়ে'],
+    qAfter: 'নিচের কোনটি সঠিক?',
+    options: ['i ও ii', 'i ও iii', 'ii ও iii', 'i, ii ও iii'],
+    ans: 0,
+    exp: 'মধ্যক নির্ণয়ে এবং অজিভ রেখা অঙ্কনে ক্রমযোজিত গণসংখ্যা প্রয়োজন হয়; প্রচুরক নির্ণয়ে এর প্রয়োজন হয় না।'
+  },
+  {
+    id: 14,
+    q: 'নিচের তথ্যগুলো লক্ষ কর:',
+    roman: [
+      'i. কেন্দ্রীয় প্রবণতার পরিমাপ ৩টি',
+      'ii. সাধারণ পদ্ধতি ও সংক্ষিপ্ত পদ্ধতিতে নির্ণেয় গড়ের মান একই হয়',
+      'iii. গণসংখ্যা বহুভুজ আঁকতে x-অক্ষে শ্রেণি মধ্যমান বসানো হয়'
+    ],
+    qAfter: 'নিচের কোনটি সঠিক?',
+    options: ['i ও ii', 'i ও iii', 'ii ও iii', 'i, ii ও iii'],
+    ans: 3,
+    exp: 'তিনটি তথ্যই সঠিক: কেন্দ্রীয় প্রবণতার পরিমাপ ৩টি (গড়, মধ্যক, প্রচুরক), উভয় পদ্ধতিতে গড় একই হয় এবং গণসংখ্যা বহুভুজে x-অক্ষে শ্রেণি মধ্যমান নেওয়া হয়।'
+  },
+  {
+    id: 15,
+    stem: 'stem1',
+    q: 'উপরের সারণি অনুযায়ী মধ্যক নির্ণয়ের ক্ষেত্রে F_c এর মান কত?',
+    options: ['৬', '১৮', '২২', '৪০'],
+    ans: 1,
+    exp: 'মোট গণসংখ্যা n = ৬০, তাই n/২ = ৩০। ক্রমযোজিত গণসংখ্যাগুলো হলো ৬, ১৮, ৪০, ৫৫, ৬০। ৩০তম পদটি (৫১–৬০) শ্রেণিতে অবস্থিত। মধ্যক শ্রেণির পূর্ববর্তী শ্রেণির ক্রমযোজিত গণসংখ্যা F_c = ১৮।'
+  },
+  {
+    id: 16,
+    q: 'উপরের সারণির প্রচুরক শ্রেণির মধ্যমান কত?',
+    options: ['৪৫.৫', '৫৫', '৫৫.৫', '৬৫.৫'],
+    ans: 2,
+    exp: 'সর্বাধিক গণসংখ্যা ২২ আছে (৫১–৬০) শ্রেণিতে। তাই প্রচুরক শ্রেণি ৫১–৬০ এবং এর মধ্যমান = (৫১ + ৬০) ÷ ২ = ৫৫.৫।'
+  },
+  {
+    id: 17,
+    q: 'উপরের সারণি থেকে প্রচুরক নির্ণয়ে f₁ + f₂ এর মান কত?',
+    options: ['১০', '১৭', '২৭', '৩৭'],
+    ans: 1,
+    exp: 'প্রচুরক শ্রেণির গণসংখ্যা ২২। f₁ = ২২ − ১২ = ১০ এবং f₂ = ২২ − ১৫ = ৭। সুতরাং f₁ + f₂ = ১০ + ৭ = ১৭।'
+  },
+  {
+    id: 18,
+    stem: 'stem2',
+    q: 'উপরের সারণিটির মধ্যক কত? (দুই দশমিক স্থান পর্যন্ত)',
+    options: ['৬৪.৫০', '৬৫.৩৩', '৬৫.৮৩', '৬৬.২৫'],
+    ans: 2,
+    exp: 'n = ৪০ ⇒ n/২ = ২০। মধ্যক শ্রেণি ৬০–৬৯ (L = ৬০, F_c = ১৩, f_m = ১২, h = ১০)। মধ্যক = ৬০ + (২০ − ১৩) × (১০/১২) = ৬০ + ৫.৮৩ = ৬৫.৮৩।'
+  },
+  {
+    id: 19,
+    q: 'উপরের সারণিটির প্রচুরক কত? (দুই দশমিক স্থান পর্যন্ত)',
+    options: ['৬৫.৬৭', '৬৬.০০', '৬৬.৬৭', '৬৭.৫০'],
+    ans: 2,
+    exp: 'সর্বাধিক গণসংখ্যা ১২ আছে (৬০–৬৯) শ্রেণিতে। L = ৬০, f₁ = ১২ − ৮ = ৪, f₂ = ১২ − ১০ = ২, h = ১০। প্রচুরক = ৬০ + [৪ / (৪ + ২)] × ১০ = ৬০ + ৬.৬৭ = ৬৬.৬৭।'
+  },
+  {
+    id: 20,
+    q: 'উপরের সারণি অনুযায়ী—',
+    roman: [
+      'i. শ্রেণি ব্যবধান ১০',
+      'ii. মধ্যক শ্রেণি ও প্রচুরক শ্রেণি একই',
+      'iii. সর্বোচ্চ শ্রেণির ক্রমযোজিত গণসংখ্যা ৪০'
+    ],
+    qAfter: 'নিচের কোনটি সঠিক?',
+    options: ['i ও ii', 'i ও iii', 'ii ও iii', 'i, ii ও iii'],
+    ans: 3,
+    exp: '৪০–৪৯ এর শ্রেণি ব্যবধান ১০; মধ্যক ও প্রচুরক উভয় শ্রেণিই ৬০–৬৯; এবং মোট গণসংখ্যা ৪০ হওয়ায় সর্বোচ্চ শ্রেণির ক্রমযোজিত গণসংখ্যা ৪০। তিনটিই সঠিক।'
+  }
+];
+
+let studentName = '';
+let userAnswers = {};
+let secondsElapsed = 0;
+let timerInterval = null;
+let quizSubmitted = false;
+let finalResultData = null;
+
+function formatTimeBn(sec) {
+  const m = Math.floor(sec / 60);
+  const s = sec % 60;
+  const sStr = s < 10 ? '০' + toBn(s) : toBn(s);
+  return `${toBn(m)}:${sStr}`;
+}
+
+function startTimer() {
+  clearInterval(timerInterval);
+  secondsElapsed = 0;
+  updateTimerUI();
+  timerInterval = setInterval(() => {
+    secondsElapsed++;
+    updateTimerUI();
+  }, 1000);
+}
+
+function updateTimerUI() {
+  document.getElementById('timer').textContent = `সময়: ${formatTimeBn(secondsElapsed)}`;
+}
+
+function updateProgress() {
+  const answeredCount = Object.keys(userAnswers).length;
+  const pct = Math.round((answeredCount / questions.length) * 100);
+  document.getElementById('progress-text').textContent = `উত্তর দেওয়া হয়েছে: ${toBn(answeredCount)} / ${toBn(questions.length)}`;
+  document.getElementById('progress-pct').textContent = `${toBn(pct)}%`;
+  document.getElementById('progress-fill').style.width = `${pct}%`;
+}
+
+function startQuiz() {
+  const input = document.getElementById('student-name-input');
+  const err = document.getElementById('name-error');
+  const nameVal = input.value.trim();
+
+  if (!nameVal) {
+    err.style.display = 'block';
+    input.focus();
+    return;
+  }
+
+  err.style.display = 'none';
+  studentName = nameVal;
+  document.getElementById('display-student-name').textContent = studentName;
+  document.getElementById('start-section').style.display = 'none';
+  document.getElementById('quiz-section').style.display = 'block';
+  document.getElementById('timer').style.display = 'block';
+  document.getElementById('progress-wrap').style.display = 'block';
+
+  renderQuiz();
+  startTimer();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderQuiz() {
+  const container = document.getElementById('questions-container');
+  container.innerHTML = '';
+
+  questions.forEach((item) => {
+    if (item.stem && stems[item.stem]) {
+      const sDiv = document.createElement('div');
+      sDiv.className = 'stem-card';
+      sDiv.innerHTML = `<div class="stem-title">${stems[item.stem].title}</div>${stems[item.stem].html}`;
+      container.appendChild(sDiv);
+    }
+
+    const card = document.createElement('div');
+    card.className = 'q-card';
+    card.id = `card-${item.id}`;
+
+    let romanHtml = '';
+    if (item.roman) {
+      romanHtml = `<div class="roman-list">${item.roman.map(r => `<div>${r}</div>`).join('')}</div>`;
+    }
+    let afterHtml = item.qAfter ? `<div style="margin-top:6px; font-weight:600;">${item.qAfter}</div>` : '';
+
+    const optionsHtml = item.options.map((opt, idx) => `
+      <button type="button" class="opt-btn" id="opt-${item.id}-${idx}" onclick="selectOption(${item.id}, ${idx})">
+        <span class="opt-label">${optLabels[idx]}</span>
+        <span>${opt}</span>
+      </button>
+    `).join('');
+
+    card.innerHTML = `
+      <div class="q-header">
+        <span class="q-num">প্রশ্ন ${toBn(item.id)}</span>
+        <span class="q-status">🔒 লকড</span>
+      </div>
+      <div class="q-text">${item.q}${romanHtml}${afterHtml}</div>
+      <div class="options-grid">${optionsHtml}</div>
+    `;
+
+    container.appendChild(card);
+  });
+
+  updateProgress();
+}
+
+function selectOption(qId, optIdx) {
+  if (quizSubmitted || userAnswers[qId] !== undefined) return;
+
+  userAnswers[qId] = optIdx;
+  const card = document.getElementById(`card-${qId}`);
+  card.classList.add('locked-card');
+
+  const buttons = card.querySelectorAll('.opt-btn');
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+    if (idx === optIdx) {
+      btn.classList.add('selected');
+    }
+  });
+
+  updateProgress();
+}
+
+function submitQuiz() {
+  const answeredCount = Object.keys(userAnswers).length;
+  const unanswered = questions.length - answeredCount;
+
+  if (unanswered > 0) {
+    const ok = confirm(`তুমি এখনো ${toBn(unanswered)}টি প্রশ্নের উত্তর দাওনি। তবুও কি সাবমিট করতে চাও?`);
+    if (!ok) return;
+  }
+
+  quizSubmitted = true;
+  clearInterval(timerInterval);
+
+  const resultPayload = {
+    studentName: studentName,
+    userAnswers: userAnswers,
+    secondsElapsed: secondsElapsed,
+    submittedAt: new Date().toLocaleString('bn-BD')
+  };
+
+  try {
+    localStorage.setItem(QUIZ_STORAGE_KEY, JSON.stringify(resultPayload));
+  } catch (e) {}
+
+  showResults(resultPayload, true);
+}
+
+function showResults(data, shouldSendEmail) {
+  finalResultData = data;
+  const answers = data.userAnswers || {};
+  let correct = 0;
+  let wrong = 0;
+  let skipped = 0;
+  let wrongList = [];
+  let skippedList = [];
+
+  const reviewContainer = document.getElementById('review-container');
+  reviewContainer.innerHTML = '';
+
+  questions.forEach((item) => {
+    const chosen = answers[item.id];
+    let statusClass = '';
+    let badgeHtml = '';
+    let yourAnsText = '';
+
+    if (chosen === undefined) {
+      skipped++;
+      skippedList.push(`প্রশ্ন ${toBn(item.id)}`);
+      statusClass = 'is-skipped';
+      badgeHtml = '<span class="badge badge-skipped">উত্তর দাওনি</span>';
+      yourAnsText = '<span style="color:#92400e; font-weight:600;">কোনো অপশন সিলেক্ট করা হয়নি</span>';
+    } else if (chosen === item.ans) {
+      correct++;
+      statusClass = 'is-correct';
+      badgeHtml = '<span class="badge badge-correct">✓ সঠিক</span>';
+      yourAnsText = `<span style="color:#065f46; font-weight:700;">${optLabels[chosen]}) ${item.options[chosen]}</span>`;
+    } else {
+      wrong++;
+      wrongList.push(`প্রশ্ন ${toBn(item.id)} (দিয়েছে: ${optLabels[chosen]}, সঠিক: ${optLabels[item.ans]})`);
+      statusClass = 'is-wrong';
+      badgeHtml = '<span class="badge badge-wrong">✕ ভুল</span>';
+      yourAnsText = `<span style="color:#991b1b; font-weight:700;">${optLabels[chosen]}) ${item.options[chosen]}</span>`;
+    }
+
+    let romanHtml = item.roman ? `<div class="roman-list">${item.roman.map(r => `<div>${r}</div>`).join('')}</div>` : '';
+    let afterHtml = item.qAfter ? `<div style="margin-top:4px;">${item.qAfter}</div>` : '';
+
+    const revCard = document.createElement('div');
+    revCard.className = `review-card ${statusClass}`;
+    revCard.innerHTML = `
+      <div class="q-header">
+        <span class="q-num">প্রশ্ন ${toBn(item.id)}</span>
+        ${badgeHtml}
+      </div>
+      <div class="q-text" style="font-size:14.5px; margin-bottom:8px;">${item.q}${romanHtml}${afterHtml}</div>
+      <div class="ans-line"><strong>তোমার উত্তর:</strong> ${yourAnsText}</div>
+      <div class="ans-line"><strong>সঠিক উত্তর:</strong> <span style="color:#065f46; font-weight:700;">${optLabels[item.ans]}) ${item.options[item.ans]}</span></div>
+      <div class="exp-box"><strong>ব্যাখ্যা:</strong> ${item.exp}</div>
+    `;
+    reviewContainer.appendChild(revCard);
+  });
+
+  finalResultData.correct = correct;
+  finalResultData.wrong = wrong;
+  finalResultData.skipped = skipped;
+  finalResultData.wrongList = wrongList;
+  finalResultData.skippedList = skippedList;
+
+  document.getElementById('res-student-name').textContent = `পরীক্ষার্থী: ${data.studentName}`;
+  document.getElementById('score-display').textContent = `${toBn(correct)} / ${toBn(questions.length)}`;
+  document.getElementById('res-time').textContent = `মোট সময় লেগেছে: ${formatTimeBn(data.secondsElapsed)} মিনিট`;
+  document.getElementById('stat-correct').textContent = toBn(correct);
+  document.getElementById('stat-wrong').textContent = toBn(wrong);
+  document.getElementById('stat-skipped').textContent = toBn(skipped);
+
+  let msg = '';
+  if (correct >= 18) msg = 'অসাধারণ! বোর্ড পরীক্ষার জন্য তোমার প্রস্তুতি দারুণ।';
+  else if (correct >= 14) msg = 'খুব ভালো হয়েছে! ভুলগুলো একবার দেখে নিলেই একদম পারফেক্ট হয়ে যাবে।';
+  else if (correct >= 10) msg = 'মোটামুটি ভালো, তবে সূত্র ও ব্যাখ্যাগুলো আরেকবার রিভিশন দেওয়া দরকার।';
+  else msg = 'আরেকটু প্র্যাকটিস দরকার—নিচের ব্যাখ্যাগুলো দেখে ভালো করে বুঝে নাও!';
+
+  document.getElementById('score-msg').textContent = msg;
+
+  document.getElementById('start-section').style.display = 'none';
+  document.getElementById('quiz-section').style.display = 'none';
+  document.getElementById('progress-wrap').style.display = 'none';
+  document.getElementById('timer').style.display = 'none';
+  document.getElementById('result-section').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  if (shouldSendEmail) {
+    sendSilentEmail(finalResultData);
+  }
+}
+
+function sendSilentEmail(res) {
+  const payload = {
+    access_key: WEB3FORMS_KEY,
+    subject: `কুইজ রেজাল্ট: ${res.studentName} (${toBn(res.correct)}/${toBn(questions.length)}) — ${QUIZ_TITLE}`,
+    from_name: 'SSC MCQ Quiz Auto-Report',
+    'পরীক্ষার্থীর নাম': res.studentName,
+    'বিষয়': QUIZ_TITLE,
+    'প্রাপ্ত নম্বর': `${toBn(res.correct)} / ${toBn(questions.length)}`,
+    'সঠিক উত্তর': toBn(res.correct),
+    'ভুল উত্তর': toBn(res.wrong),
+    'বাদ পড়েছে': toBn(res.skipped),
+    'মোট সময়': `${formatTimeBn(res.secondsElapsed)} মিনিট`,
+    'ভুল প্রশ্নগুলোর তালিকা': res.wrongList.length > 0 ? res.wrongList.join(' | ') : 'কোনো ভুল নেই',
+    'উত্তর দেয়নি': res.skippedList.length > 0 ? res.skippedList.join(', ') : 'নেই',
+    'সাবমিটের সময়': res.submittedAt || ''
+  };
+
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  }).catch(() => {});
+}
+
+function sendWhatsApp() {
+  if (!finalResultData) return;
+  const r = finalResultData;
+  const wrongText = r.wrongList.length > 0 ? r.wrongList.join('\n- ') : 'কোনো ভুল নেই';
+  const text =
+`স্যার, আমার কুইজের রেজাল্ট:
+*বিষয়:* ${QUIZ_TITLE}
+*নাম:* ${r.studentName}
+*স্কোর:* ${toBn(r.correct)} / ${toBn(questions.length)}
+*সঠিক:* ${toBn(r.correct)} | *ভুল:* ${toBn(r.wrong)} | *বাদ:* ${toBn(r.skipped)}
+*সময়:* ${formatTimeBn(r.secondsElapsed)} মিনিট
+
+*ভুল উত্তরগুলো:*
+${r.wrongList.length > 0 ? '- ' + wrongText : wrongText}`;
+
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank');
+}
+
+(function checkExistingResult() {
+  try {
+    const saved = localStorage.getItem(QUIZ_STORAGE_KEY);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      if (parsed && parsed.studentName) {
+        quizSubmitted = true;
+        showResults(parsed, false);
+      }
+    }
+  } catch (e) {}
+})();
+</script>
+</body>
+</html>
