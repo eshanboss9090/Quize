@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>এসএসসি গণিত ৩.২ - বোর্ড স্ট্যান্ডার্ড MCQ কুইজ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1e40af;
+      --primary-light: #eff6ff;
+      --primary-border: #bfdbfe;
+      --accent: #0f766e;
+      --danger: #dc2626;
+      --danger-light: #fef2f2;
+      --success: #15803d;
+      --success-light: #f0fdf4;
+      --warn: #b45309;
+      --warn-light: #fffbeb;
+      --bg: #f1f5f9;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #e2e8f0;
+      --whatsapp: #25d366;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Hind Siliguri', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Math Fraction Formatting */
+    .frac {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      vertical-align: middle;
+      margin: 0 2px;
+      font-size: 0.86em;
+      line-height: 1.1;
+    }
+    .frac .num {
+      border-bottom: 1.3px solid currentColor;
+      padding: 0 3px 1px;
+    }
+    .frac .den {
+      padding: 1px 3px 0;
+    }
+    .sqrt {
+      white-space: nowrap;
+    }
+
+    /* Header */
+    .main-header {
+      background: linear-gradient(135deg, #1e3a8a, #2563eb);
+      color: #fff;
+      text-align: center;
+      padding: 20px 16px 18px;
+      box-shadow: 0 3px 10px rgba(30, 58, 138, 0.2);
+    }
+    .main-header h1 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+    .main-header .subtitle {
+      font-size: 0.92rem;
+      opacity: 0.92;
+      margin-top: 2px;
+    }
+    .creator-badge {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 4px 14px;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.6px;
+      backdrop-filter: blur(4px);
+    }
+
+    /* Sticky Timer Bar */
+    .sticky-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      padding: 10px 14px;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.07);
+    }
+    .sticky-bar.active {
+      display: flex;
+    }
+    .student-tag {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--muted);
+      max-width: 48%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .timer-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary-light);
+      color: var(--primary);
+      border: 1px solid var(--primary-border);
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+    .timer-pill.danger {
+      background: var(--danger-light);
+      color: var(--danger);
+      border-color: #fecaca;
+      animation: pulse 1s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+
+    /* Main Container */
+    .container {
+      width: 100%;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 16px 12px 28px;
+      flex: 1;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 18px 16px;
+      margin-bottom: 14px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+    }
+
+    /* Start Screen */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 14px 0 16px;
+    }
+    .info-box {
+      background: var(--bg);
+      border-radius: 10px;
+      padding: 10px 6px;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+    .info-box .val {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .info-box .lbl {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .rules-list {
+      background: var(--warn-light);
+      border: 1px solid #fde68a;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 18px;
+      font-size: 0.88rem;
+      color: #78350f;
+    }
+    .rules-list h3 {
+      font-size: 0.94rem;
+      margin-bottom: 6px;
+      color: #92400e;
+    }
+    .rules-list ul {
+      padding-left: 18px;
+    }
+    .rules-list li {
+      margin-bottom: 4px;
+    }
+
+    .input-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 1rem;
+      font-family: inherit;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 10px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .input-group input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
+    }
+    .error-msg {
+      color: var(--danger);
+      font-size: 0.85rem;
+      margin-top: 6px;
+      display: none;
+      font-weight: 500;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 13px 18px;
+      font-size: 1.02rem;
+      font-weight: 700;
+      font-family: inherit;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.1s, opacity 0.2s;
+      text-decoration: none;
+    }
+    .btn:active {
+      transform: scale(0.98);
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      margin-top: 14px;
+      box-shadow: 0 4px 10px rgba(30, 64, 175, 0.22);
+    }
+    .btn-submit {
+      background: var(--accent);
+      color: #fff;
+      margin-top: 8px;
+      box-shadow: 0 4px 10px rgba(15, 118, 110, 0.22);
+    }
+    .btn-whatsapp {
+      background: #16a34a;
+      color: #fff;
+      margin-top: 14px;
+      box-shadow: 0 4px 10px rgba(22, 163, 74, 0.25);
+    }
+
+    /* Question Card */
+    .q-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      gap: 8px;
+    }
+    .q-num {
+      font-size: 0.82rem;
+      font-weight: 700;
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 2px 10px;
+      border-radius: 999px;
+    }
+    .q-status {
+      font-size: 0.76rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+    .status-chance {
+      background: #fef3c7;
+      color: #92400e;
+    }
+    .status-locked {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .stem-box {
+      background: #f8fafc;
+      border-left: 3.5px solid var(--primary);
+      padding: 8px 10px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+      color: #1e293b;
+    }
+    .q-text {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .poly-list {
+      margin: 6px 0 10px 14px;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+    .poly-list div {
+      margin-bottom: 3px;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    .opt-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      text-align: left;
+      padding: 11px 12px;
+      background: #f8fafc;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.96rem;
+      font-family: inherit;
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .opt-label {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #e2e8f0;
+      color: #334155;
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .opt-btn.selected {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary);
+      font-weight: 600;
+    }
+    .opt-btn.selected .opt-label {
+      background: var(--primary);
+      color: #fff;
+    }
+    .opt-btn.locked-opt {
+      cursor: not-allowed;
+      opacity: 0.72;
+    }
+    .opt-btn.locked-opt.selected {
+      opacity: 1;
+    }
+
+    /* Progress Summary */
+    .progress-bar-wrap {
+      background: #e2e8f0;
+      height: 7px;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--primary);
+      width: 0%;
+      transition: width 0.25s ease;
+    }
+
+    /* Result Section */
+    .score-hero {
+      text-align: center;
+      padding: 20px 14px;
+      background: linear-gradient(135deg, #eff6ff, #f0fdf4);
+      border: 1px solid #bfdbfe;
+      border-radius: 14px;
+      margin-bottom: 16px;
+    }
+    .score-circle {
+      width: 108px;
+      height: 108px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 10px auto 12px;
+      box-shadow: 0 6px 16px rgba(30, 64, 175, 0.28);
+    }
+    .score-circle .big {
+      font-size: 1.8rem;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .score-circle .small {
+      font-size: 0.82rem;
+      opacity: 0.9;
+    }
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .stat-box {
+      background: #fff;
+      padding: 9px 6px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    .stat-box .num {
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+    .stat-box .txt {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .c-green { color: var(--success); }
+    .c-red { color: var(--danger); }
+    .c-gray { color: #64748b; }
+
+    /* Review Cards */
+    .rev-badge {
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+    .rev-correct { background: var(--success-light); color: var(--success); }
+    .rev-wrong { background: var(--danger-light); color: var(--danger); }
+    .rev-skip { background: #f1f5f9; color: #475569; }
+
+    .ans-compare {
+      font-size: 0.9rem;
+      margin: 8px 0;
+      padding: 8px 10px;
+      background: #f8fafc;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .exp-box {
+      font-size: 0.88rem;
+      background: #f0fdf4;
+      border-left: 3.5px solid var(--success);
+      padding: 9px 11px;
+      border-radius: 6px;
+      color: #14532d;
+      margin-top: 8px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 16px 12px 22px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      background: #fff;
+      margin-top: auto;
+    }
+
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="main-header">
+    <h1>এসএসসি সাধারণ গণিত — অনুশীলনী ৩.২</h1>
+    <div class="subtitle">ঘন সংবলিত সূত্রাবলি (বোর্ড স্ট্যান্ডার্ড MCQ পরীক্ষা)</div>
+    <div class="creator-badge">Prepared by Eshan</div>
+  </header>
+
+  <!-- Sticky Timer Bar -->
+  <div id="stickyBar" class="sticky-bar">
+    <div id="displayStudentName" class="student-tag"></div>
+    <div id="timerPill" class="timer-pill">⏱️ <span id="timerText">২০:০০</span></div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="container">
+
+    <!-- START SCREEN -->
+    <section id="startScreen" class="card">
+      <h2 style="font-size:1.15rem; margin-bottom:4px;">পরীক্ষার নির্দেশাবলি</h2>
+      <div class="info-grid">
+        <div class="info-box">
+          <div class="val">২০টি</div>
+          <div class="lbl">মোট প্রশ্ন</div>
+        </div>
+        <div class="info-box">
+          <div class="val">২০ মিনিট</div>
+          <div class="lbl">মোট সময়</div>
+        </div>
+        <div class="info-box">
+          <div class="val">২০</div>
+          <div class="lbl">পূর্ণমান</div>
+        </div>
+      </div>
+
+      <div class="rules-list">
+        <h3>গুরুত্বপূর্ণ নিয়মাবলি:</h3>
+        <ul>
+          <li>প্রতিটি প্রশ্নে উত্তর দেওয়ার জন্য সর্বোচ্চ <strong>২ বার</strong> সুযোগ পাবে। প্রথমবার সিলেক্ট করার পর মাত্র ১ বার উত্তর পরিবর্তন করা যাবে; ২য় বার অন্য অপশন সিলেক্ট করলেই প্রশ্নটি লক হয়ে যাবে।</li>
+          <li>একই অপশনে পুনরায় টাচ করলে সুযোগ নষ্ট হবে না।</li>
+          <li>নির্ধারিত ২০ মিনিট শেষ হলে পরীক্ষা অটোমেটিক সাবমিট হয়ে যাবে।</li>
+          <li>পেজ রিফ্রেশ করলেও সময় বা উত্তর রিসেট হবে না এবং একবার সাবমিট করলে পুনরায় পরীক্ষা দেওয়া যাবে না।</li>
+        </ul>
+      </div>
+
+      <div class="input-group">
+        <label for="studentNameInput">পরীক্ষার্থীর পূর্ণ নাম লিখো:</label>
+        <input type="text" id="studentNameInput" placeholder="যেমন: তানভীর আহমেদ" autocomplete="off" />
+        <div id="nameError" class="error-msg">দয়া করে আগে তোমার নাম লিখো!</div>
+      </div>
+
+      <button id="startBtn" class="btn btn-primary">পরীক্ষা শুরু করো</button>
+    </section>
+
+    <!-- QUIZ SCREEN -->
+    <section id="quizScreen" class="hidden">
+      <div style="display:flex; justify-content:space-between; font-size:0.85rem; color:var(--muted); margin-bottom:6px; font-weight:600;">
+        <span>উত্তর দেওয়া হয়েছে: <strong id="answeredCount">০</strong> / ২০</span>
+        <span>সব অপশন ভেবেচিন্তে দাগাও</span>
+      </div>
+      <div class="progress-bar-wrap">
+        <div id="progressFill" class="progress-fill"></div>
+      </div>
+
+      <div id="questionsContainer"></div>
+
+      <button id="submitBtn" class="btn btn-submit">পরীক্ষা সাবমিট করো</button>
+    </section>
+
+    <!-- RESULT SCREEN -->
+    <section id="resultScreen" class="hidden">
+      <div class="score-hero">
+        <div style="font-size:0.95rem; font-weight:600; color:var(--muted);">পরীক্ষা সম্পন্ন হয়েছে</div>
+        <h2 id="resStudentName" style="font-size:1.25rem; margin-top:2px;"></h2>
+        <div class="score-circle">
+          <div id="resScoreBig" class="big">০/২০</div>
+          <div class="small">প্রাপ্ত নম্বর</div>
+        </div>
+        <div style="font-size:0.92rem; font-weight:600; color:#334155;">
+          ব্যয়িত সময়: <span id="resTimeSpent"></span> মিনিট
+        </div>
+
+        <div class="stat-row">
+          <div class="stat-box">
+            <div id="resCorrect" class="num c-green">০</div>
+            <div class="txt">সঠিক</div>
+          </div>
+          <div class="stat-box">
+            <div id="resWrong" class="num c-red">০</div>
+            <div class="txt">ভুল</div>
+          </div>
+          <div class="stat-box">
+            <div id="resSkipped" class="num c-gray">০</div>
+            <div class="txt">বাদ</div>
+          </div>
+        </div>
+
+        <button id="whatsappBtn" class="btn btn-whatsapp">📲 WhatsApp-এ রেজাল্ট পাঠাও</button>
+      </div>
+
+      <h3 style="font-size:1.05rem; margin: 14px 4px 10px; color:var(--text);">বিস্তারিত উত্তর ও ব্যাখ্যা:</h3>
+      <div id="reviewContainer"></div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    Designed &amp; Conducted by Eshan
+  </footer>
+
+  <script>
+    // ============== CONFIGURATION ==============
+    const STORAGE_KEY = "eshan_ssc_math_3_2_board_quiz_2026_v1";
+    const EXAM_DURATION_SEC = 20 * 60; // 20 minutes
+    const WEB3FORMS_KEY = "f63898b3-a56e-46a3-b287-4053a00fe610";
+    const WHATSAPP_NUMBER = "8801957010055";
+    const TOPIC_NAME = "এসএসসি গণিত - অনুশীলনী ৩.২";
+    const OPT_LABELS = ["ক", "খ", "গ", "ঘ"];
+
+    // Helper for clean HTML fractions
+    const frac = (n, d) => `<span class="frac"><span class="num">${n}</span><span class="den">${d}</span></span>`;
+
+    // ============== 20 BOARD-STANDARD QUESTIONS ==============
+    const questions = [
+      {
+        q: `4y + ${frac('4', 'y')} = 4&radic;3 হলে, y<sup>3</sup> + ${frac('1', 'y<sup>3</sup>')} এর মান কত? [ঢা. বো. '২২]`,
+        options: ["0", "1", "3&radic;3", "18&radic;3"],
+        ans: 0,
+        exp: `4(y + ${frac('1', 'y')}) = 4&radic;3 &rArr; y + ${frac('1', 'y')} = &radic;3। সুতরাং, y<sup>3</sup> + ${frac('1', 'y<sup>3</sup>')} = (&radic;3)<sup>3</sup> &minus; 3&radic;3 = 3&radic;3 &minus; 3&radic;3 = 0।`
+      },
+      {
+        q: `a + b = 4 এবং a<sup>2</sup> + b<sup>2</sup> = 8 হলে, a<sup>3</sup> + b<sup>3</sup> এর মান কত? [ম. বো. '২২]`,
+        options: ["0", "12", "16", "18"],
+        ans: 2,
+        exp: `2ab = (a + b)<sup>2</sup> &minus; (a<sup>2</sup> + b<sup>2</sup>) = 16 &minus; 8 = 8 &rArr; ab = 4। এখন, a<sup>3</sup> + b<sup>3</sup> = 4<sup>3</sup> &minus; 3 &times; 4 &times; 4 = 64 &minus; 48 = 16।`
+      },
+      {
+        q: `a<sup>2</sup> + 1 &minus; &radic;6a = 0 হলে, a<sup>3</sup> + ${frac('1', 'a<sup>3</sup>')} এর মান কত? [য. বো. '২০]`,
+        options: ["0", "3&radic;3", "3&radic;6", "5&radic;6"],
+        ans: 2,
+        exp: `a<sup>2</sup> + 1 = &radic;6a &rArr; a + ${frac('1', 'a')} = &radic;6। সুতরাং, a<sup>3</sup> + ${frac('1', 'a<sup>3</sup>')} = (&radic;6)<sup>3</sup> &minus; 3&radic;6 = 6&radic;6 &minus; 3&radic;6 = 3&radic;6।`
+      },
+      {
+        q: `p + ${frac('1', 'p')} = 0 হলে, &radic;2 (&radic;p + ${frac('1', '&radic;p')}) এর মান কত? [রা. বো. '২০]`,
+        options: ["0", "1", "2", "4"],
+        ans: 2,
+        exp: `(&radic;p + ${frac('1', '&radic;p')})<sup>2</sup> = p + ${frac('1', 'p')} + 2 = 0 + 2 = 2 &rArr; &radic;p + ${frac('1', '&radic;p')} = &radic;2। অতএব, &radic;2 &times; &radic;2 = 2।`
+      },
+      {
+        q: `p<sup>2</sup> = 13 + &radic;168 হলে, ${frac('1', 'p')} এর মান কোনটি? [দি. বো. '১৯]`,
+        options: ["&radic;13 + 42", "&radic;7 + &radic;6", "&radic;13 &minus; 42", "&radic;7 &minus; &radic;6"],
+        ans: 3,
+        exp: `p<sup>2</sup> = 13 + 2&radic;42 = (&radic;7 + &radic;6)<sup>2</sup> &rArr; p = &radic;7 + &radic;6। সুতরাং, ${frac('1', 'p')} = &radic;7 &minus; &radic;6।`
+      },
+      {
+        q: `x = &radic;3 + &radic;5 হলে, ${frac('1', 'x')} এর মান কত? [চ. বো. '১৯]`,
+        options: [
+          `${frac('1', '2')}(&radic;5 &minus; &radic;3)`,
+          `&radic;3 &minus; &radic;5`,
+          `&radic;5 &minus; &radic;3`,
+          `${frac('1', '2')}(&radic;3 &minus; &radic;5)`
+        ],
+        ans: 0,
+        exp: `${frac('1', 'x')} = ${frac('1', '&radic;5 + &radic;3')} = ${frac('&radic;5 &minus; &radic;3', '(&radic;5)<sup>2</sup> &minus; (&radic;3)<sup>2</sup>')} = ${frac('1', '2')}(&radic;5 &minus; &radic;3)।`
+      },
+      {
+        q: `a + ${frac('1', 'a')} = 5 হলে, a<sup>3</sup> + ${frac('1', 'a<sup>3</sup>')} এর মান কত? [ব. বো. '১৯]`,
+        options: ["21", "23", "110", "140"],
+        ans: 2,
+        exp: `a<sup>3</sup> + ${frac('1', 'a<sup>3</sup>')} = (a + ${frac('1', 'a')})<sup>3</sup> &minus; 3(a + ${frac('1', 'a')}) = 5<sup>3</sup> &minus; 3 &times; 5 = 125 &minus; 15 = 110।`
+      },
+      {
+        q: `a &minus; b = 2 এবং ab = 3 হলে, a<sup>3</sup> &minus; b<sup>3</sup> এর মান কত? [কু. বো. '১৭]`,
+        options: ["&minus;10", "&minus;1", "17", "26"],
+        ans: 3,
+        exp: `a<sup>3</sup> &minus; b<sup>3</sup> = (a &minus; b)<sup>3</sup> + 3ab(a &minus; b) = 2<sup>3</sup> + 3 &times; 3 &times; 2 = 8 + 18 = 26।`
+      },
+      {
+        q: `a + b = 3 এবং ab = 1 হলে, a<sup>3</sup> + b<sup>3</sup> + (a &minus; b)<sup>2</sup> এর মান কত? [চ. বো. '১৫]`,
+        options: [
