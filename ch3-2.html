@@ -676,4 +676,411 @@
       },
       {
         q: `a + b = 3 এবং ab = 1 হলে, a<sup>3</sup> + b<sup>3</sup> + (a &minus; b)<sup>2</sup> এর মান কত? [চ. বো. '১৫]`,
+        options: ["23", "31", "41", "49"],
+        ans: 0,
+        exp: `a<sup>3</sup> + b<sup>3</sup> = 3<sup>3</sup> &minus; 3(1)(3) = 18 এবং (a &minus; b)<sup>2</sup> = 3<sup>2</sup> &minus; 4(1) = 5। যোগফল = 18 + 5 = 23।`
+      },
+      {
+        q: `p<sup>2</sup> &minus; 1 = &radic;5p হলে, p<sup>3</sup> &minus; ${frac('1', 'p<sup>3</sup>')} এর মান কত? [রা. বো. '১৫]`,
+        options: ["0", "2&radic;5", "3&radic;5", "8&radic;5"],
+        ans: 3,
+        exp: `p &minus; ${frac('1', 'p')} = &radic;5। সুতরাং, p<sup>3</sup> &minus; ${frac('1', 'p<sup>3</sup>')} = (&radic;5)<sup>3</sup> + 3&radic;5 = 5&radic;5 + 3&radic;5 = 8&radic;5।`
+      },
+      {
+        q: `a + b = 7 এবং a<sup>3</sup> + b<sup>3</sup> = 133 হলে, ab এর মান কত?`,
+        options: ["8", "10", "12", "13"],
+        ans: 1,
+        exp: `(a + b)<sup>3</sup> &minus; 3ab(a + b) = 133 &rArr; 343 &minus; 21ab = 133 &rArr; 21ab = 210 &rArr; ab = 10।`
+      },
+      {
+        q: `a = 5 হলে, a<sup>3</sup> &minus; 3a<sup>2</sup> + 3a &minus; 1 এর মান কত?`,
+        options: ["124", "126", "64", "216"],
+        ans: 2,
+        exp: `প্রদত্ত রাশি = (a &minus; 1)<sup>3</sup> = (5 &minus; 1)<sup>3</sup> = 4<sup>3</sup> = 64।`
+      },
+      {
+        q: `x(2x &minus; 5) = ${frac('1', '3')} হলে, 8x<sup>3</sup> &minus; ${frac('1', '27x<sup>3</sup>')} এর মান কত?`,
+        options: ["135", "125", "115", "110"],
+        ans: 0,
+        exp: `2x &minus; ${frac('1', '3x')} = 5। এখন, (2x)<sup>3</sup> &minus; (${frac('1', '3x')})<sup>3</sup> = 5<sup>3</sup> + 3 &times; 2x &times; ${frac('1', '3x')} &times; 5 = 125 + 10 = 135।`
+      },
+      {
+        q: `a = 7 + 4&radic;3 হলে, a&radic;a &minus; ${frac('1', 'a&radic;a')} এর মান নিচের কোনটি?`,
+        options: ["2&radic;3", "30&radic;3", "52", "8&radic;3"],
+        ans: 1,
+        exp: `a = (2 + &radic;3)<sup>2</sup> &rArr; &radic;a = 2 + &radic;3 এবং ${frac('1', '&radic;a')} = 2 &minus; &radic;3। ফলে &radic;a &minus; ${frac('1', '&radic;a')} = 2&radic;3। প্রদত্ত রাশি = (2&radic;3)<sup>3</sup> + 3(2&radic;3) = 24&radic;3 + 6&radic;3 = 30&radic;3।`
+      },
+      {
+        q: `a + ${frac('1', 'a')} = 2 হলে, a<sup>6</sup> &minus; ${frac('1', 'a<sup>6</sup>')} এর মান কত?`,
+        options: ["1", "2", "3", "0"],
+        ans: 3,
+        exp: `a + ${frac('1', 'a')} = 2 &rArr; a<sup>2</sup> &minus; 2a + 1 = 0 &rArr; (a &minus; 1)<sup>2</sup> = 0 &rArr; a = 1। সুতরাং, 1<sup>6</sup> &minus; ${frac('1', '1<sup>6</sup>')} = 1 &minus; 1 = 0।`
+      },
+      {
+        q: `x + y = 4 হলে নিচের কোনটি সঠিক?`,
         options: [
+          "x<sup>3</sup> + y<sup>3</sup> + 4xy = 64",
+          "x<sup>3</sup> + y<sup>3</sup> + 12xy = 16",
+          "x<sup>3</sup> + y<sup>3</sup> + 3xy = 64",
+          "x<sup>3</sup> + y<sup>3</sup> + 12xy = 64"
+        ],
+        ans: 3,
+        exp: `(x + y)<sup>3</sup> = 4<sup>3</sup> &rArr; x<sup>3</sup> + y<sup>3</sup> + 3xy(x + y) = 64 &rArr; x<sup>3</sup> + y<sup>3</sup> + 3xy(4) = 64 &rArr; x<sup>3</sup> + y<sup>3</sup> + 12xy = 64।`
+      },
+      {
+        q: `a<sup>4</sup> &minus; a<sup>2</sup> + 1 = 0 হলে, a<sup>3</sup> + ${frac('1', 'a<sup>3</sup>')} এর মান কত?`,
+        options: ["0", "1", "2&radic;3", "&plusmn;&radic;3"],
+        ans: 0,
+        exp: `a<sup>2</sup> + ${frac('1', 'a<sup>2</sup>')} = 1 &rArr; (a + ${frac('1', 'a')})<sup>2</sup> &minus; 2 = 1 &rArr; a + ${frac('1', 'a')} = &radic;3। সুতরাং, a<sup>3</sup> + ${frac('1', 'a<sup>3</sup>')} = (&radic;3)<sup>3</sup> &minus; 3&radic;3 = 0।`
+      },
+      {
+        q: `যদি a<sup>2</sup> &minus; &radic;2a + 1 = 0 হয়, তবে— [ঢা. বো. '২৪]
+            <div class="poly-list">
+              <div>i. a + ${frac('1', 'a')} = &radic;2</div>
+              <div>ii. a<sup>2</sup> + ${frac('1', 'a<sup>2</sup>')} = 2</div>
+              <div>iii. a<sup>3</sup> + ${frac('1', 'a<sup>3</sup>')} = &minus;&radic;2</div>
+            </div>
+            নিচের কোনটি সঠিক?`,
+        options: ["i ও ii", "i ও iii", "ii ও iii", "i, ii ও iii"],
+        ans: 1,
+        exp: `i. a + ${frac('1', 'a')} = &radic;2 (সঠিক)। ii. (&radic;2)<sup>2</sup> &minus; 2 = 0 (ভুল)। iii. (&radic;2)<sup>3</sup> &minus; 3&radic;2 = 2&radic;2 &minus; 3&radic;2 = &minus;&radic;2 (সঠিক)।`
+      },
+      {
+        stem: `নিচের তথ্যের ভিত্তিতে ১৯ ও ২০ নং প্রশ্নের উত্তর দাও:<br><strong>x &minus; 3 &minus; 2&radic;2 = 0</strong> [য. বো. '২২]`,
+        q: `x &minus; ${frac('1', 'x')} এর মান কত?`,
+        options: ["0", "2&radic;2", "4&radic;2", "6"],
+        ans: 2,
+        exp: `x = 3 + 2&radic;2 এবং ${frac('1', 'x')} = 3 &minus; 2&radic;2। সুতরাং, x &minus; ${frac('1', 'x')} = (3 + 2&radic;2) &minus; (3 &minus; 2&radic;2) = 4&radic;2।`
+      },
+      {
+        stem: `উদ্দীপকের তথ্য: <strong>x &minus; 3 &minus; 2&radic;2 = 0</strong> [য. বো. '২২]`,
+        q: `x<sup>3</sup> + ${frac('1', 'x<sup>3</sup>')} এর মান কত?`,
+        options: ["198", "210", "213", "234"],
+        ans: 0,
+        exp: `x + ${frac('1', 'x')} = (3 + 2&radic;2) + (3 &minus; 2&radic;2) = 6। সুতরাং, x<sup>3</sup> + ${frac('1', 'x<sup>3</sup>')} = 6<sup>3</sup> &minus; 3 &times; 6 = 216 &minus; 18 = 198।`
+      }
+    ];
+
+    const bnDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+    function toBn(val) {
+      return String(val).replace(/\d/g, d => bnDigits[d]);
+    }
+    function formatMMSS(sec) {
+      const s = Math.max(0, Math.floor(sec));
+      const m = Math.floor(s / 60);
+      const r = s % 60;
+      return `${toBn(String(m).padStart(2, '0'))}:${toBn(String(r).padStart(2, '0'))}`;
+    }
+
+    let state = {
+      started: false,
+      submitted: false,
+      studentName: "",
+      startTime: null,
+      endTime: null,
+      timeSpentSec: 0,
+      answers: {},
+      attempts: {},
+      locked: {},
+      emailSent: false
+    };
+
+    let timerInterval = null;
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          state = Object.assign(state, parsed);
+        }
+      } catch (e) {}
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) {}
+    }
+
+    const startScreen = document.getElementById("startScreen");
+    const quizScreen = document.getElementById("quizScreen");
+    const resultScreen = document.getElementById("resultScreen");
+    const stickyBar = document.getElementById("stickyBar");
+    const displayStudentName = document.getElementById("displayStudentName");
+    const timerPill = document.getElementById("timerPill");
+    const timerText = document.getElementById("timerText");
+    const studentNameInput = document.getElementById("studentNameInput");
+    const nameError = document.getElementById("nameError");
+    const startBtn = document.getElementById("startBtn");
+    const submitBtn = document.getElementById("submitBtn");
+    const questionsContainer = document.getElementById("questionsContainer");
+    const answeredCount = document.getElementById("answeredCount");
+    const progressFill = document.getElementById("progressFill");
+
+    function renderQuiz() {
+      questionsContainer.innerHTML = "";
+      questions.forEach((item, idx) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.id = `q-card-${idx}`;
+
+        let statusHtml = "";
+        if (state.locked[idx]) {
+          statusHtml = `<span class="q-status status-locked">🔒 লকড</span>`;
+        } else if (state.attempts[idx] === 1) {
+          statusHtml = `<span class="q-status status-chance">১ বার পরিবর্তনের সুযোগ বাকি</span>`;
+        }
+
+        const stemHtml = item.stem ? `<div class="stem-box">${item.stem}</div>` : "";
+
+        let optsHtml = "";
+        item.options.forEach((opt, oIdx) => {
+          const isSelected = state.answers[idx] === oIdx;
+          const isLocked = !!state.locked[idx];
+          const cls = `opt-btn ${isSelected ? 'selected' : ''} ${isLocked ? 'locked-opt' : ''}`;
+          optsHtml += `
+            <button type="button" class="${cls}" data-q="${idx}" data-o="${oIdx}" ${isLocked ? 'disabled' : ''}>
+              <span class="opt-label">${OPT_LABELS[oIdx]}</span>
+              <span>${opt}</span>
+            </button>
+          `;
+        });
+
+        card.innerHTML = `
+          <div class="q-header">
+            <span class="q-num">প্রশ্ন ${toBn(idx + 1)}</span>
+            <div id="q-status-${idx}">${statusHtml}</div>
+          </div>
+          ${stemHtml}
+          <div class="q-text">${item.q}</div>
+          <div class="options-grid" id="q-opts-${idx}">
+            ${optsHtml}
+          </div>
+        `;
+        questionsContainer.appendChild(card);
+      });
+
+      updateProgress();
+    }
+
+    function updateSingleQuestionUI(qIdx) {
+      const optsWrap = document.getElementById(`q-opts-${qIdx}`);
+      const statusWrap = document.getElementById(`q-status-${qIdx}`);
+      if (!optsWrap || !statusWrap) return;
+
+      const isLocked = !!state.locked[qIdx];
+      const selectedOpt = state.answers[qIdx];
+
+      if (isLocked) {
+        statusWrap.innerHTML = `<span class="q-status status-locked">🔒 লকড</span>`;
+      } else if (state.attempts[qIdx] === 1) {
+        statusWrap.innerHTML = `<span class="q-status status-chance">১ বার পরিবর্তনের সুযোগ বাকি</span>`;
+      }
+
+      const buttons = optsWrap.querySelectorAll(".opt-btn");
+      buttons.forEach(btn => {
+        const oIdx = Number(btn.getAttribute("data-o"));
+        btn.classList.toggle("selected", selectedOpt === oIdx);
+        btn.classList.toggle("locked-opt", isLocked);
+        btn.disabled = isLocked;
+      });
+
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const count = Object.keys(state.answers).length;
+      answeredCount.textContent = toBn(count);
+      progressFill.style.width = `${(count / questions.length) * 100}%`;
+    }
+
+    questionsContainer.addEventListener("click", (e) => {
+      const btn = e.target.closest(".opt-btn");
+      if (!btn || state.submitted) return;
+
+      const qIdx = Number(btn.getAttribute("data-q"));
+      const oIdx = Number(btn.getAttribute("data-o"));
+
+      if (state.locked[qIdx]) return;
+      if (state.answers[qIdx] === oIdx) return;
+
+      state.answers[qIdx] = oIdx;
+      state.attempts[qIdx] = (state.attempts[qIdx] || 0) + 1;
+
+      if (state.attempts[qIdx] >= 2) {
+        state.locked[qIdx] = true;
+      }
+
+      saveState();
+      updateSingleQuestionUI(qIdx);
+    });
+
+    function startTimer() {
+      clearInterval(timerInterval);
+      function tick() {
+        const remainingMs = state.endTime - Date.now();
+        const remainingSec = Math.ceil(remainingMs / 1000);
+
+        if (remainingSec <= 0) {
+          timerText.textContent = "০০:০০";
+          clearInterval(timerInterval);
+          submitQuiz(true);
+          return;
+        }
+
+        timerText.textContent = formatMMSS(remainingSec);
+        if (remainingSec <= 180) {
+          timerPill.classList.add("danger");
+        } else {
+          timerPill.classList.remove("danger");
+        }
+      }
+      tick();
+      timerInterval = setInterval(tick, 1000);
+    }
+
+    function evaluateQuiz() {
+      let correct = 0;
+      let wrong = 0;
+      let skipped = 0;
+      const wrongList = [];
+      const emailDetails = [];
+
+      questions.forEach((q, idx) => {
+        const u = state.answers[idx];
+        if (u === undefined) {
+          skipped++;
+          emailDetails.push(`প্রশ্ন ${idx + 1}: উত্তর দেওয়া হয়নি (সঠিক: ${OPT_LABELS[q.ans]})`);
+        } else if (u === q.ans) {
+          correct++;
+        } else {
+          wrong++;
+          wrongList.push({
+            num: idx + 1,
+            given: OPT_LABELS[u],
+            correct: OPT_LABELS[q.ans]
+          });
+          emailDetails.push(`প্রশ্ন ${idx + 1}: দিয়েছে ${OPT_LABELS[u]}, সঠিক ${OPT_LABELS[q.ans]}`);
+        }
+      });
+
+      return { correct, wrong, skipped, wrongList, emailDetails };
+    }
+
+    function sendSilentEmail(evalData) {
+      if (state.emailSent) return;
+
+      const timeFormatted = formatMMSS(state.timeSpentSec);
+      const reportBody = [
+        `বিষয়: ${TOPIC_NAME} (২০ MCQ)`,
+        `পরীক্ষার্থীর নাম: ${state.studentName}`,
+        `স্কোর: ${evalData.correct} / ${questions.length}`,
+        `সঠিক: ${evalData.correct} | ভুল: ${evalData.wrong} | বাদ: ${evalData.skipped}`,
+        `ব্যয়িত সময়: ${timeFormatted} মিনিট`,
+        ``,
+        `ভুল ও বাদ দেওয়া প্রশ্নসমূহ:`,
+        evalData.emailDetails.length > 0 ? evalData.emailDetails.join("\n") : "কোনো ভুল বা বাদ নেই (পূর্ণ নম্বর)!"
+      ].join("\n");
+
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `Quiz Result: ${state.studentName} (${evalData.correct}/${questions.length}) - Math 3.2`,
+          from_name: "Eshan Quiz System",
+          message: reportBody
+        })
+      })
+      .then(res => {
+        if (res.ok) {
+          state.emailSent = true;
+          saveState();
+        }
+      })
+      .catch(() => {});
+    }
+
+    function submitQuiz(isAuto = false) {
+      if (state.submitted) return;
+
+      if (!isAuto) {
+        const answered = Object.keys(state.answers).length;
+        const msg = answered < questions.length
+          ? `তুমি ${toBn(questions.length)}টির মধ্যে ${toBn(answered)}টি প্রশ্নের উত্তর দিয়েছো। এখনই কি পরীক্ষা সাবমিট করতে চাও?`
+          : `তুমি কি নিশ্চিতভাবে পরীক্ষা সাবমিট করতে চাও? সাবমিট করলে আর পরিবর্তন করা যাবে না।`;
+        if (!confirm(msg)) return;
+      }
+
+      clearInterval(timerInterval);
+      const now = Date.now();
+      const elapsed = Math.min(EXAM_DURATION_SEC, Math.max(1, Math.round((now - state.startTime) / 1000)));
+      state.timeSpentSec = isAuto ? EXAM_DURATION_SEC : elapsed;
+      state.submitted = true;
+      saveState();
+
+      const evalData = evaluateQuiz();
+      sendSilentEmail(evalData);
+      showResultScreen(evalData);
+    }
+
+    function showResultScreen(evalData) {
+      if (!evalData) evalData = evaluateQuiz();
+
+      startScreen.classList.add("hidden");
+      quizScreen.classList.add("hidden");
+      stickyBar.classList.remove("active");
+      resultScreen.classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+
+      document.getElementById("resStudentName").textContent = state.studentName;
+      document.getElementById("resScoreBig").textContent = `${toBn(evalData.correct)}/${toBn(questions.length)}`;
+      document.getElementById("resTimeSpent").textContent = formatMMSS(state.timeSpentSec);
+      document.getElementById("resCorrect").textContent = toBn(evalData.correct);
+      document.getElementById("resWrong").textContent = toBn(evalData.wrong);
+      document.getElementById("resSkipped").textContent = toBn(evalData.skipped);
+
+      document.getElementById("whatsappBtn").onclick = () => {
+        let msg = `দাদা নমস্কার, আমার কুইজের রেজাল্ট:\n`;
+        msg += `*বিষয়:* ${TOPIC_NAME} (${toBn(questions.length)} MCQ)\n`;
+        msg += `*নাম:* ${state.studentName}\n`;
+        msg += `*স্কোর:* ${toBn(evalData.correct)} / ${toBn(questions.length)}\n`;
+        msg += `*সঠিক:* ${toBn(evalData.correct)} | *ভুল:* ${toBn(evalData.wrong)} | *বাদ:* ${toBn(evalData.skipped)}\n`;
+        msg += `*সময়:* ${formatMMSS(state.timeSpentSec)} মিনিট`;
+
+        if (evalData.wrongList.length > 0) {
+          msg += `\n\n*ভুল উত্তরগুলো:*\n`;
+          msg += evalData.wrongList
+            .map(w => `• প্রশ্ন ${toBn(w.num)} (দিয়েছে: ${w.given}, সঠিক: ${w.correct})`)
+            .join("\n");
+        }
+
+        const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+        window.open(url, "_blank");
+      };
+
+      const reviewContainer = document.getElementById("reviewContainer");
+      reviewContainer.innerHTML = "";
+
+      questions.forEach((item, idx) => {
+        const u = state.answers[idx];
+        let badgeHtml = "";
+        let userAnsText = "";
+
+        if (u === undefined) {
+          badgeHtml = `<span class="rev-badge rev-skip">উত্তর দেওয়া হয়নি</span>`;
+          userAnsText = `<span style="color:#64748b; font-weight:600;">উত্তর দেওয়া হয়নি</span>`;
+        } else if (u === item.ans) {
+          badgeHtml = `<span class="rev-badge rev-correct">✓ সঠিক</span>`;
+          userAnsText = `<span style="color:var(--success); font-weight:700;">(${OPT_LABELS[u]}) ${item.options[u]}</span>`;
+        } else {
+          badgeHtml = `<span class="rev-badge rev-wrong">✗ ভুল</span>`;
+          userAnsText = `<span style="color:var(--danger); font-weight:700;">(${OPT_LABELS[u]}) ${item.options[u]}</span>`;
+        }
+
+        const stemHtml = item.
+    
