@@ -1082,5 +1082,74 @@
           userAnsText = `<span style="color:var(--danger); font-weight:700;">(${OPT_LABELS[u]}) ${item.options[u]}</span>`;
         }
 
-        const stemHtml = item.
+        const stemHtml = item.stem ? `<div class="stem-box">${item.stem}</div>` : "";
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <div class="q-header">
+            <span class="q-num">প্রশ্ন ${toBn(idx + 1)}</span>
+            ${badgeHtml}
+          </div>
+          ${stemHtml}
+          <div class="q-text">${item.q}</div>
+          <div class="ans-compare">
+            <div>তোমার উত্তর: ${userAnsText}</div>
+            <div style="margin-top:3px;">সঠিক উত্তর: <strong style="color:var(--success);">(${OPT_LABELS[item.ans]}) ${item.options[item.ans]}</strong></div>
+          </div>
+          <div class="exp-box"><strong>ব্যাখ্যা:</strong> ${item.exp}</div>
+        `;
+        reviewContainer.appendChild(card);
+      });
+    }
+
+    startBtn.addEventListener("click", () => {
+      const name = studentNameInput.value.trim();
+      if (!name) {
+        nameError.style.display = "block";
+        studentNameInput.focus();
+        return;
+      }
+      nameError.style.display = "none";
+
+      state.studentName = name;
+      state.started = true;
+      state.startTime = Date.now();
+      state.endTime = state.startTime + EXAM_DURATION_SEC * 1000;
+      saveState();
+
+      enterQuizMode();
+    });
+
+    submitBtn.addEventListener("click", () => submitQuiz(false));
+
+    function enterQuizMode() {
+      startScreen.classList.add("hidden");
+      resultScreen.classList.add("hidden");
+      quizScreen.classList.remove("hidden");
+      stickyBar.classList.add("active");
+      displayStudentName.textContent = `👤 ${state.studentName}`;
+
+      renderQuiz();
+      startTimer();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    (function init() {
+      loadState();
+      if (state.submitted) {
+        const evalData = evaluateQuiz();
+        if (!state.emailSent) sendSilentEmail(evalData);
+        showResultScreen(evalData);
+      } else if (state.started) {
+        if (Date.now() >= state.endTime) {
+          submitQuiz(true);
+        } else {
+          enterQuizMode();
+        }
+      }
+    })();
+  </script>
+</body>
+</html>
+
     
