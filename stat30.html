@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>এসএসসি গণিত: অধ্যায় ১৭ (পরিসংখ্যান)</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:#f1f5f9;color:#0f172a;line-height:1.55;min-height:100vh;display:flex;flex-direction:column}
+.wrap{max-width:680px;width:100%;margin:0 auto;padding:12px;flex:1}
+.sticky{position:sticky;top:0;z-index:99;background:#0f172a;color:#fff;padding:10px 12px;display:none;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.s-in{max-width:680px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:.9rem}
+.s-name{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:42%}
+.s-prog{background:rgba(255,255,255,.15);padding:2px 9px;border-radius:14px;white-space:nowrap}
+.tmr{background:#2563eb;padding:3px 10px;border-radius:7px;font-weight:700;font-size:1rem;white-space:nowrap}
+.tmr.red{background:#dc2626}
+.card{background:#fff;border-radius:12px;padding:16px;margin-bottom:13px;border:1px solid #e2e8f0;box-shadow:0 1px 5px rgba(0,0,0,.04)}
+.hdr{text-align:center;border-bottom:2px solid #e2e8f0;padding-bottom:12px;margin-bottom:14px}
+.bdg{display:inline-block;background:#dbeafe;color:#1e40af;font-size:.8rem;font-weight:700;padding:2px 10px;border-radius:15px;margin-bottom:6px}
+.hdr h1{font-size:1.3rem;margin-bottom:4px}
+.prep{display:inline-block;font-size:.85rem;font-weight:700;color:#1d4ed8;background:#eff6ff;padding:2px 12px;border-radius:12px;border:1px solid #bfdbfe;margin:4px 0 6px}
+.meta{font-size:.88rem;color:#475569}
+.rules{background:#f8fafc;border:1px solid #e2e8f0;border-radius:9px;padding:12px 14px;margin-bottom:14px;font-size:.88rem}
+.rules ul{padding-left:18px;margin-top:5px}
+.rules li{margin-bottom:4px;color:#334155}
+label{display:block;font-weight:700;margin-bottom:5px;font-size:.95rem}
+input{width:100%;padding:11px 12px;font-size:1rem;border:2px solid #cbd5e1;border-radius:9px;outline:none}
+input:focus{border-color:#2563eb}
+.err{color:#dc2626;font-size:.84rem;margin-top:5px;display:none;font-weight:600}
+.btn{width:100%;padding:12px;font-size:1rem;font-weight:700;border:none;border-radius:9px;cursor:pointer;color:#fff;text-align:center;text-decoration:none;display:block}
+.btn-p{background:#1d4ed8;margin-top:12px}
+.btn-s{background:#16a34a;margin-top:6px}
+.btn-w{background:#25D366;margin-top:12px}
+.qh{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:10px}
+.qt{font-size:.98rem;font-weight:700;white-space:pre-line}
+.qs{font-size:.73rem;font-weight:700;padding:2px 7px;border-radius:10px;white-space:nowrap;flex-shrink:0}
+.qs-1{background:#fef3c7;color:#92400e}
+.qs-l{background:#e0e7ff;color:#3730a3}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{width:100%;text-align:left;padding:10px 12px;font-size:.94rem;background:#f8fafc;border:2px solid #e2e8f0;border-radius:9px;cursor:pointer;display:flex;align-items:center;gap:9px;color:#0f172a}
+.ol{width:24px;height:24px;border-radius:50%;background:#e2e8f0;color:#334155;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.opt.sel{background:#dbeafe;border-color:#2563eb;font-weight:700}
+.opt.sel .ol{background:#2563eb;color:#fff}
+.opt.lkd{background:#e0e7ff;border-color:#4338ca;font-weight:700}
+.opt.lkd .ol{background:#4338ca;color:#fff}
+.opt.dis{opacity:.6;cursor:not-allowed}
+.res-top{text-align:center;background:linear-gradient(135deg,#1e3a8a,#2563eb);color:#fff;border:none}
+.sc{font-size:2.3rem;font-weight:700;margin:8px 0}
+.pills{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;font-size:.88rem;margin-top:8px}
+.pill{background:rgba(255,255,255,.18);padding:4px 10px;border-radius:14px}
+.rev{border-left:5px solid #cbd5e1}
+.rev.c{border-left-color:#16a34a}
+.rev.w{border-left-color:#dc2626}
+.rev.u{border-left-color:#d97706}
+.ar{margin-top:6px;font-size:.88rem;padding:6px 9px;border-radius:7px}
+.ac{background:#dcfce7;color:#14532d}
+.aw{background:#fee2e2;color:#7f1d1d}
+.au{background:#fef3c7;color:#78350f}
+.ex{margin-top:6px;font-size:.86rem;color:#334155;background:#f8fafc;padding:7px 10px;border-radius:7px;border:1px dashed #cbd5e1}
+footer{text-align:center;padding:14px 10px;font-size:.85rem;font-weight:600;color:#475569;border-top:1px solid #e2e8f0;background:#fff;margin-top:18px}
+.hide{display:none!important}
+</style>
+</head>
+<body>
+<div id="bar" class="sticky">
+  <div class="s-in">
+    <div id="sName" class="s-name"></div>
+    <div id="sProg" class="s-prog">উত্তর: ০/৩০</div>
+    <div id="tmr" class="tmr">৩০:০০</div>
+  </div>
+</div>
+<div class="wrap">
+  <div id="startSc" class="card">
+    <div class="hdr">
+      <span class="bdg">এসএসসি সাধারণ গণিত</span>
+      <h1>অধ্যায় ১৭: পরিসংখ্যান (৩০ MCQ)</h1>
+      <div class="prep">Prepared by Eshan</div>
+      <div class="meta">মোট প্রশ্ন: ৩০টি | পূর্ণমান: ৩০ | সময়: ৩০ মিনিট</div>
+    </div>
+    <div class="rules">
+      <strong>পরীক্ষার নিয়মাবলি:</strong>
+      <ul>
+        <li>শুরুতে তোমার নাম লেখা বাধ্যতামূলক।</li>
+        <li>প্রতি প্রশ্নে সর্বোচ্চ <strong>২ বার সুযোগ</strong> (ভুল হলে ১ বার পরিবর্তন করা যাবে; ২য় বার অন্য অপশনে টাচ করলেই লক হয়ে যাবে)।</li>
+        <li>সময় <strong>৩০ মিনিট</strong>; সময় শেষ হলে অটো-সাবমিট হবে।</li>
+        <li>রিফ্রেশ করলেও সময় ও দাগানো উত্তর সংরক্ষিত থাকবে।</li>
+      </ul>
+    </div>
+    <label for="uName">পরীক্ষার্থীর নাম:</label>
+    <input type="text" id="uName" placeholder="তোমার পূর্ণ নাম লেখো..." autocomplete="off">
+    <div id="nErr" class="err">পরীক্ষা শুরু করতে নাম লিখতে হবে!</div>
+    <button id="goBtn" class="btn btn-p">পরীক্ষা শুরু করো</button>
+  </div>
+  <div id="quizSc" class="hide">
+    <div id="qBox"></div>
+    <button id="subBtn" class="btn btn-s">পরীক্ষা সাবমিট করো</button>
+  </div>
+  <div id="resSc" class="hide">
+    <div class="card res-top">
+      <h2>পরীক্ষা সম্পন্ন হয়েছে!</h2>
+      <div id="rName" style="font-size:.98rem;margin-top:4px"></div>
+      <div id="rScore" class="sc"></div>
+      <div class="pills">
+        <span id="rC" class="pill"></span>
+        <span id="rW" class="pill"></span>
+        <span id="rU" class="pill"></span>
+        <span id="rT" class="pill"></span>
+      </div>
+      <a id="waBtn" href="#" target="_blank" class="btn btn-w">📲 WhatsApp-এ রেজাল্ট পাঠাও</a>
+    </div>
+    <div id="revBox"></div>
+  </div>
+</div>
+<footer>Designed &amp; Conducted by Eshan</footer>
+<script>
+const KEY="ssc_math17_30mcq_eshan_v1",W3K="f63898b3-a56e-46a3-b287-4053a00fe610",WA="8801957010055",TOP="এসএসসি গণিত অধ্যায় ১৭ (পরিসংখ্যান)",TOT=1800,L=["ক","খ","গ","ঘ"];
+const Q=[
+["কোনো উপাত্তের পরিসর ৬৭ এবং সর্বোচ্চ মান ৮৫ হলে, সর্বনিম্ন মান কত?",["১৭","১৮","১৯","২০"],2,"পরিসর=(সর্বোচ্চ−সর্বনিম্ন)+১ ⇒ ৬৭=(৮৫−সর্বনিম্ন)+১ ⇒ সর্বনিম্ন=১৯।"],
+["কোনো উপাত্তের সর্বনিম্ন নম্বর ৩৫ ও পরিসর ৫৬ হলে সর্বোচ্চ নম্বর কত?",["৮০","৮৫","৯০","৯৬"],2,"৫৬=(সর্বোচ্চ−৩৫)+১ ⇒ সর্বোচ্চ=৫৬+৩৪=৯০।"],
+["পরিসর ২৭ হলে, ৫ ব্যবধান নিয়ে গণসংখ্যা সারণি তৈরি করলে কয়টি শ্রেণি হবে?",["৫টি","৬টি","৭টি","৪টি"],1,"শ্রেণি সংখ্যা = ২৭÷৫ = ৫.৪ ≈ ৬টি।"],
+["পরিসর ১১০ এবং শ্রেণিসংখ্যা ১০ হলে, শ্রেণি ব্যবধান কত?",["১০","১১","১২","১৩"],1,"শ্রেণি ব্যবধান = ১১০÷১০ = ১১।"],
+["কোনো শ্রেণির নিম্নসীমা ৩০ এবং শ্রেণিমধ্যমান ৩২ হলে, ওই শ্রেণির ঊর্ধ্বসীমা কত?",["৩৩","৩৪","৩৫","৩৭"],1,"(৩০+ঊর্ধ্বসীমা)÷২ = ৩২ ⇒ ঊর্ধ্বসীমা = ৬৪−৩০ = ৩৪।"],
+["কোনো শ্রেণির ঊর্ধ্বসীমা ৩৭ এবং মধ্যমান ৩৪ হলে, নিম্নসীমা কত?",["৩০","৩১","৩৩","৩৫"],1,"(৩৭+নিম্নসীমা)÷২ = ৩৪ ⇒ নিম্নসীমা = ৬৮−৩৭ = ৩১।"],
+["কোনো শ্রেণির উচ্চসীমা ৬৫ এবং মধ্যমান ৬২.৫ হলে, নিম্নসীমা কত?",["৫০","৫৫","৫৬","৬০"],3,"(৬৫+নিম্নসীমা)÷২ = ৬২.৫ ⇒ নিম্নসীমা = ১২৫−৬৫ = ৬০।"],
+["নিচের কোনটি অবিচ্ছিন্ন চলক?",["জনসংখ্যা","শিক্ষার্থী সংখ্যা","বয়স","পাখির সংখ্যা"],2,"বয়স যেকোনো বাস্তব সংখ্যা (দশমিকসহ) হতে পারে, তাই এটি অবিচ্ছিন্ন চলক।"],
+["পরীক্ষায় প্রাপ্ত জিপিএ (GPA) কোন ধরনের চলক?",["বিচ্ছিন্ন চলক","অবিচ্ছিন্ন চলক","অবিন্যস্ত চলক","বিন্যস্ত চলক"],1,"জিপিএ দশমিক মান হতে পারে (যেমন ৪.৭৫), তাই এটি অবিচ্ছিন্ন চলক।"],
+["নিচের কোনটি বিচ্ছিন্ন চলকের উদাহরণ?",["তাপমাত্রা","উচ্চতা","ওজন","জনসংখ্যা"],3,"জনসংখ্যা সর্বদা পূর্ণসংখ্যা হয়, তাই এটি বিচ্ছিন্ন চলক।"],
+["গণসংখ্যা সারণি প্রস্তুত করতে হলে প্রথমে কোনটি প্রয়োজন?",["শ্রেণি সংখ্যা","শ্রেণি ব্যবধান","পরিসর","গণসংখ্যা"],2,"সারণি তৈরির ১ম ধাপ হলো পরিসর নির্ণয়।"],
+["তিনটি শ্রেণির গণসংখ্যা যথাক্রমে ২, ৬, ৩ হলে, দ্বিতীয় শ্রেণিতে ক্রমযোজিত গণসংখ্যা কত?",["৫","৮","৯","১১"],1,"২য় শ্রেণির ক্রমযোজিত গণসংখ্যা = ২+৬ = ৮।"],
+["২৭, ২৯, ৩০ কোনো উপাত্তের গণসংখ্যা হলে তার দ্বিতীয় শ্রেণির ক্রমযোজিত গণসংখ্যা কত?",["২৭","২৯","৫৬","৮৬"],2,"২য় শ্রেণির ক্রমযোজিত গণসংখ্যা = ২৭+২৯ = ৫৬।"],
+["নিচের কোনটি নির্ণয়ের জন্য ক্রমযোজিত গণসংখ্যা সারণি প্রয়োজন?",["গাণিতিক গড়","প্রচুরক","মধ্যক","পরিসর"],2,"মধ্যক ও অজিভ রেখা নির্ণয়ে ক্রমযোজিত গণসংখ্যা লাগে।"],
+["সারণি: [শ্রেণি: ২১-২৫, ২৬-৩০, ৩১-৩৫, ৩৬-৪০, ৪১-৪৫ | গণসংখ্যা: ৩, ৬, ৬, ৭, ৪]\nমধ্যক নির্ণয়ের জন্য Fc এর মান কত?",["৬","৭","৯","১৫"],2,"n=২৬, n/২=১৩ যা (৩১-৩৫) শ্রেণিতে। এর পূর্ববর্তী ক্রমযোজিত গণসংখ্যা Fc = ৩+৬ = ৯।"],
+["অজিভ রেখা অঙ্কনে X-অক্ষ বরাবর কোনটিকে ধরা হয়?",["গণসংখ্যা","মধ্যমান","শ্রেণির উচ্চসীমা","ক্রমযোজিত গণসংখ্যা"],2,"অজিভ রেখায় X-অক্ষে শ্রেণির উচ্চসীমা ও Y-অক্ষে ক্রমযোজিত গণসংখ্যা বসে।"],
+["অজিভ রেখার ক্ষেত্রে নিচের কোনটি সঠিক?",["ঊর্ধ্বগামী","নিম্নগামী","সমান্তরাল","উল্লম্ব"],0,"ক্রমযোজিত গণসংখ্যা ক্রমাগত বাড়ে বলে অজিভ রেখা ঊর্ধ্বগামী হয়।"],
+["আয়তলেখ অঙ্কনের জন্য শ্রেণিব্যাপ্তি কেমন হতে হবে?",["বিচ্ছিন্ন","অবিচ্ছিন্ন","পূর্ণসংখ্যা","ধনাত্মক"],1,"আয়তলেখ অঙ্কনে শ্রেণিব্যাপ্তি অবশ্যই অবিচ্ছিন্ন হতে হয়।"],
+["১ থেকে ১৯ পর্যন্ত মৌলিক সংখ্যাগুলোর গাণিতিক গড় কত?",["৯.৬৩","৯.৭৫","১০.৫৭","১১.০০"],0,"মৌলিক সংখ্যা: ২,৩,৫,৭,১১,১৩,১৭,১৯ (৮টি)। যোগফল ৭৭; গড় = ৭৭÷৮ ≈ ৯.৬৩।"],
+["১ থেকে ২১ পর্যন্ত বিজোড় সংখ্যাগুলোর গড় কত?",["৯","১০","১১","১২"],2,"১ থেকে ২১ পর্যন্ত ১১টি বিজোড় সংখ্যার সমষ্টি ১২১; গড় = ১২১÷১১ = ১১।"],
+["গড় নির্ণয়ের ক্ষেত্রে অনুমিত গড় a = ৩২, u₃ = −৩, h = ৬ হলে, x₃ = কত?",["১৪","১৬","২০","২৬"],0,"x₃ = a + u₃h = ৩২ + (−৩)×৬ = ৩২−১৮ = ১৪।"],
+["নিচের কোনটি নির্ণয়ে ধাপ বিচ্যুতি প্রয়োজন হয়?",["গড়","মধ্যক","প্রচুরক","পরিসর"],0,"সংক্ষিপ্ত পদ্ধতিতে গড় নির্ণয়ে ধাপ বিচ্যুতি (uᵢ) প্রয়োজন হয়।"],
+["১২ থেকে ৪৫ পর্যন্ত মৌলিক সংখ্যাগুলোর মধ্যক কোনটি?",["২৩","২৬","২৯","৫২"],2,"মৌলিক সংখ্যা (৯টি): ১৩,১৭,১৯,২৩,২৯,৩১,৩৭,৪১,৪৩। মাঝের সংখ্যা (৫ম পদ) = ২৯।"],
+["২, ১০, ৫, ১, ০, ৭, ৩, ৪ সংখ্যাগুলোর মধ্যক কত?",["০.৫","১.০","৩.৫","৪.০"],2,"সাজিয়ে: ০,১,২,৩,৪,৫,৭,১০। মধ্যক = (৩+৪)÷২ = ৩.৫।"],
+["উপাত্তের সংখ্যা n বিজোড় সংখ্যা হলে মধ্যক হবে—",["n/2 তম পদ","(n−1)/2 তম পদ","(n+1)/2 তম পদ","(n+2)/2 তম পদ"],2,"n বিজোড় হলে মধ্যক = (n+1)/2 তম পদ।"],
+["সারণি: [শ্রেণি: ৩১-৩৫, ৩৬-৪০, ৪১-৪৫, ৪৬-৫০, ৫১-৫৫, ৫৬-৬০ | গণসংখ্যা: ৫, ৮, ১৮, ১৫, ১২, ১০]\nমধ্যক শ্রেণির নিম্নসীমা কত?",["৩৬","৪১","৪৬","৫১"],2,"n=৬৮, n/২=৩৪। ক্রমযোজিত: ৫,১৩,৩১,৪৬। ৩৪ আছে (৪৬-৫০) শ্রেণিতে, নিম্নসীমা ৪৬।"],
+["সারণি: [শ্রেণি: ২১-২৫, ২৬-৩০, ৩১-৩৫, ৩৬-৪০, ৪১-৪৫ | গণসংখ্যা: ৩, ৬, ৬, ৭, ৪]\nপ্রচুরক শ্রেণির মধ্যমান কত?",["২৮","৩৩","৩৮","৪৩"],2,"সর্বাধিক গণসংখ্যা ৭ আছে (৩৬-৪০) শ্রেণিতে। মধ্যমান = (৩৬+৪০)÷২ = ৩৮।"],
+["সারণি: [শ্রেণি: ১১-২০, ২১-৩০, ৩১-৪০, ৪১-৫০, ৫১-৬০ | গণসংখ্যা: ৮, ১৫, ১২, ৮, ৭]\nপ্রদত্ত উপাত্তের প্রচুরক কত?",["২০","২৫.৫","২৮","৩৫.৫"],2,"প্রচুরক শ্রেণি (২১-৩০); L=২১, f₁=৭, f₂=৩, h=১০ ⇒ ২১+(৭/১০)×১০ = ২৮।"],
+["৫, ০, ২, ০, ৭, ৪, ৩ উপাত্তগুলোর—\ni. গড় ৩   ii. প্রচুরক ০   iii. মধ্যক ০\nনিচের কোনটি সঠিক?",["i ও ii","i ও iii","ii ও iii","i, ii ও iii"],0,"গড় = ২১÷৭ = ৩ (সঠিক), প্রচুরক = ০ (সঠিক), মধ্যক = ৩ (iii ভুল)।"],
+["ক্রমযোজিত গণসংখ্যা প্রয়োজন—\ni. প্রচুরক নির্ণয়ে   ii. মধ্যক নির্ণয়ে   iii. অজিভ রেখা নির্ণয়ে\nনিচের কোনটি সঠিক?",["i ও ii","i ও iii","ii ও iii","i, ii ও iii"],2,"মধ্যক নির্ণয় ও অজিভ রেখা অঙ্কনে ক্রমযোজিত গণসংখ্যা প্রয়োজন।"]
+];
+const bn=n=>String(n).replace(/\d/g,d=>"০১২৩৪৫৬৭৮৯"[d]);
+const fT=s=>bn(String(Math.floor(s/60)).padStart(2,"0"))+":"+bn(String(s%60).padStart(2,"0"));
+let S={st:0,sub:0,em:0,nm:"",t0:0,t1:0,el:0,ans:{}},iv=null;
+const save=()=>localStorage.setItem(KEY,JSON.stringify(S));
+try{let r=localStorage.getItem(KEY);if(r)S=JSON.parse(r);}catch(e){}
+const $=id=>document.getElementById(id);
+function drawQ(){
+  let h="";
+  Q.forEach((x,i)=>{
+    let a=S.ans[i],st=a?(a.l?'<span class="qs qs-l">🔒 লকড</span>':'<span class="qs qs-1">১ বার পরিবর্তন</span>'):"";
+    let os=x[1].map((o,j)=>{
+      let c="opt",d="";
+      if(a){if(a.l){d="disabled";c+=a.s===j?" lkd":" dis";}else if(a.s===j)c+=" sel";}
+      return `<button type="button" class="${c}" onclick="pick(${i},${j})" ${d}><span class="ol">${L[j]}</span><span>${o}</span></button>`;
+    }).join("");
+    h+=`<div class="card"><div class="qh"><div class="qt">${bn(i+1)}। ${x[0]}</div>${st}</div><div class="opts">${os}</div></div>`;
+  });
+  $("qBox").innerHTML=h;
+  $("sProg").textContent=`উত্তর: ${bn(Object.keys(S.ans).length)}/${bn(Q.length)}`;
+}
+window.pick=(i,j)=>{
+  if(S.sub)return;
+  let a=S.ans[i];
+  if(!a)S.ans[i]={s:j,l:0};
+  else{if(a.l||a.s===j)return;S.ans[i]={s:j,l:1};}
+  save();drawQ();
+};
+function runT(){
+  clearInterval(iv);
+  const tk=()=>{
+    let rem=Math.ceil((S.t1-Date.now())/1000);
+    if(rem<=0){clearInterval(iv);$("tmr").textContent="০০:০০";finish(1);return;}
+    $("tmr").textContent=fT(rem);
+    $("tmr").classList.toggle("red",rem<=180);
+  };
+  tk();iv=setInterval(tk,1000);
+}
+function finish(auto){
+  if(S.sub){showRes();return;}
+  clearInterval(iv);
+  S.el=auto?TOT:Math.min(TOT,Math.max(1,Math.floor((Date.now()-S.t0)/1000)));
+  S.sub=1;save();
+  let c=0,wl=[],ul=[];
+  Q.forEach((x,i)=>{
+    let a=S.ans[i];
+    if(!a)ul.push(`${bn(i+1)}। (সঠিক: ${L[x[2]]})`);
+    else if(a.s===x[2])c++;
+    else wl.push(`${bn(i+1)}। দিয়েছে: ${L[a.s]}, সঠিক: ${L[x[2]]}`);
+  });
+  if(!S.em){
+    fetch("https://api.web3forms.com/submit",{
+      method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        access_key:W3K,from_name:"SSC Quiz",
+        subject:`রেজাল্ট: ${S.nm} (${bn(c)}/${bn(Q.length)}) - Ch17`,
+        message:`বিষয়: ${TOP}\nনাম: ${S.nm}\nস্কোর: ${bn(c)}/${bn(Q.length)}\nসময়: ${fT(S.el)} মিনিট\nভুল (${bn(wl.length)}): ${wl.join(" | ")||"নেই"}\nবাদ (${bn(ul.length)}): ${ul.join(" | ")||"নেই"}`
+      })
+    }).then(()=>{S.em=1;save();}).catch(()=>{});
+  }
+  showRes();
+}
+function showRes(){
+  $("bar").style.display="none";
+  $("startSc").classList.add("hide");
+  $("quizSc").classList.add("hide");
+  $("resSc").classList.remove("hide");
+  let c=0,w=0,u=0,h="",wLines=[];
+  Q.forEach((x,i)=>{
+    let a=S.ans[i],cl="",uh="";
+    if(!a){u++;cl="u";uh=`<div class="ar au"><strong>তোমার উত্তর:</strong> উত্তর দেওয়া হয়নি</div>`;}
+    else if(a.s===x[2]){c++;cl="c";uh=`<div class="ar ac"><strong>তোমার উত্তর:</strong> ${L[a.s]}) ${x[1][a.s]} ✅</div>`;}
+    else{w++;cl="w";uh=`<div class="ar aw"><strong>তোমার উত্তর:</strong> ${L[a.s]}) ${x[1][a.s]} ❌</div>`;wLines.push(`• প্রশ্ন ${bn(i+1)} (দিয়েছে: ${L[a.s]}, সঠিক: ${L[x[2]]})`);}
+    let ch=(a&&a.s===x[2])?"":`<div class="ar ac"><strong>সঠিক উত্তর:</strong> ${L[x[2]]}) ${x[1][x[2]]}</div>`;
+    h+=`<div class="card rev ${cl}"><div class="qt">${bn(i+1)}। ${x[0]}</div>${uh}${ch}<div class="ex"><strong>ব্যাখ্যা:</strong> ${x[3]}</div></div>`;
+  });
+  $("revBox").innerHTML=h;
+  $("rName").textContent="পরীক্ষার্থী: "+S.nm;
+  $("rScore").textContent=`${bn(c)} / ${bn(Q.length)}`;
+  $("rC").textContent="সঠিক: "+bn(c);
+  $("rW").textContent="ভুল: "+bn(w);
+  $("rU").textContent="বাদ: "+bn(u);
+  $("rT").textContent="সময়: "+fT(S.el)+" মিনিট";
+  let msg=`দাদা নমস্কার, আমার কুইজের রেজাল্ট:\n\n*বিষয়:* ${TOP} (${bn(Q.length)} MCQ)\n\n*নাম:* ${S.nm}\n\n*স্কোর:* ${bn(c)} / ${bn(Q.length)}\n\n*সঠিক:* ${bn(c)} | *ভুল:* ${bn(w)} | *বাদ:* ${bn(u)}\n\n*সময়:* ${fT(S.el)} মিনিট`;
+  if(wLines.length)msg+=`\n\n*ভুল উত্তরগুলো:*\n\n${wLines.join("\n")}`;
+  $("waBtn").href=`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
+  window.scrollTo(0,0);
+}
+function startView(){
+  $("startSc").classList.add("hide");
+  $("resSc").classList.add("hide");
+  $("quizSc").classList.remove("hide");
+  $("bar").style.display="block";
+  $("sName").textContent="👤 "+S.nm;
+  drawQ();runT();
+}
+$("goBtn").onclick=()=>{
+  let n=$("uName").value.trim();
+  if(!n){$("nErr").style.display="block";$("uName").focus();return;}
+  S.st=1;S.nm=n;S.t0=Date.now();S.t1=S.t0+TOT*1000;save();startView();
+};
+$("subBtn").onclick=()=>{
+  if(confirm(`তুমি ${bn(Q.length)}টির মধ্যে ${bn(Object.keys(S.ans).length)}টির উত্তর দিয়েছো। সাবমিট করতে চাও?`))finish(0);
+};
+if(S.sub)showRes();
+else if(S.st){Date.now()>=S.t1?finish(1):startView();}
+</script>
+</body>
+</html>
